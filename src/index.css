@@ -1,0 +1,115 @@
+.top-buffer { margin-top:20px; }
+.flex-center {
+    text-align: center;
+    align: center;
+}
+.flex-center-horizontal {
+    display: inline-block;
+}
+.img-rounded {
+    width: auto; 
+    height: 180px; 
+	max-width: 200px;
+	max-height: 200px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.addon-md {
+    min-width: 85px;
+}
+.lgwbtn {
+    width: 125px;
+}
+.menu-item-selected {
+    font-size: large;
+    font-weight: bold;
+    text-shadow: 1px 2px 0 #bfbfbf;
+}
+.menu-item {
+    font-weight: bolder;
+    font-size: larger;
+}
+.list-group {
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.console-font {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+}
+
+
+body {
+    background-color:#fff;
+    -webkit-font-smoothing: antialiased;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+
+.panel-heading {
+    border-radius: 8px;	
+}
+.panel-body {
+    min-height: 100px;
+}
+.panel {
+    background-color: #EDEDED;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 3px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+.panel-disabled {
+    background-color: #EDEDED;
+    color: #bfbfbf;
+}
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+td.calendar-select{
+    background-color:#333333;    
+    color: #e5e7ff;
+}
+td.calendar-disable{background-color:#eeeeee}
+
+td.calendar-past{background-color:#cfcfcf}
+td.calendar-past:hover{background-color:#bfbfbf}
+
+
+td.calendar-active{background-color:#ff9682}
+td.calendar-active:hover{background-color:#bfbfbf}
+
+td.calendar-count-0{background-color:#e1eae7}
+
+.calendarBusy10{
+    background-image: linear-gradient(135deg, #8a8a8a 45%, rgba(246,245,245,0) 45%) !important;
+}
+.calendarBusy01{
+    background-image: linear-gradient(-45deg, #8a8a8a 45%, rgba(246,245,245,0) 45%) !important;
+}
+.calendarBusy11{
+    background-image: linear-gradient(-45deg, #8a8a8a 45%, #8a8a8a 45%) !important;
+}
+
+td.calendar-count-1{background-color:#c8ffdf}
+td.calendar-count-2{background-color:#b7ff97}
+td.calendar-count-3{background-color:#d2ff99}
+td.calendar-count-4{background-color:#ccff8a}
+td.calendar-count-5{background-color:#fffd92}
+td.calendar-count-6{background-color:#ffea82}
+td.calendar-count-7{background-color:#ffd877}
+td.calendar-count-8{background-color:#ffc272}
+td.calendar-count-9{background-color:#ffa16e}
+td.calendar-count-10{background-color:#ff8671}
+
+.pickmeup{
+    z-index: 99;
+}
+
+    
