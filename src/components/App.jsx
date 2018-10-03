@@ -15,6 +15,9 @@ import ListPaidGifts from "./ListPaidGifts";
 import AesKeyForm from "./KeyForm";
 import LoginForm from "./LoginForm";
 import Header from "./Header";
+import {bindActionCreators} from "redux";
+import * as messageActions from "../actions/message";
+import connect from "react-redux/es/connect/connect";
 
  class App extends React.Component {
     componentDidMount = () => {
@@ -22,18 +25,22 @@ import Header from "./Header";
         APIController.start();
     };
     showMessage = (code, textStr, type, onOk) => {
-        if (type === undefined) type = MSG_MODE_STATIC;
-        if (onOk === undefined) onOk = null;
-        var timeOffset = Date.now() - this.state.lastHideModalTime;
-        if (timeOffset > 300) {
-            $('#modalMessage').modal('show');
-        }
-        this.setState({
-            msgType: type,
-            messageCode: code,
-            messageText: textStr,
-            onDialogOk: onOk
-        });
+
+        const { showApiMessage } = this.props;
+        showApiMessage({code, message:textStr});
+
+        // if (type === undefined) type = MSG_MODE_STATIC;
+        // if (onOk === undefined) onOk = null;
+        // var timeOffset = Date.now() - this.state.lastHideModalTime;
+        // if (timeOffset > 300) {
+        //     $('#modalMessage').modal('show');
+        // }
+        // this.setState({
+        //     msgType: type,
+        //     messageCode: code,
+        //     messageText: textStr,
+        //     onDialogOk: onOk
+        // });
     };
     hideMessage = (e) => {
         if (e) {
@@ -147,4 +154,14 @@ import Header from "./Header";
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        message: state.message,
+    }
+}
+const mapDispatchToProps = dispatch => ({
+    ...bindActionCreators(messageActions, dispatch),
+});
+
+
+export default connect (mapStateToProps, mapDispatchToProps)(App);

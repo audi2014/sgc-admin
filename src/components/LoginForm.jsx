@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {E_CODE_ARG_MISSING, MSG_MODE_MODAL} from "../badcode/Constants";
 import APIController from "../badcode/ApiController";
-import { Button, Form, Grid, Header,Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
+import *as messageActions from '../actions/message';
+import {bindActionCreators} from 'redux';
+
 
 class LoginForm extends React.Component {
-    isBlankString = (str) => {
-        return (str.length === 0 || !str.trim());
-    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            password: ""
+        };
+    }
+
     handleEmailChange = (evt) => {
         this.setState({email: evt.target.value});
     };
@@ -14,52 +24,44 @@ class LoginForm extends React.Component {
         this.setState({password: evt.target.value});
     };
     handleLogin = () => {
-        if (this.isBlankString(this.state.email)) {
+        const { showError, showMessage } = this.props;
+
+        if (!(this.state.email)) {
+            showError("email is empty" );
             //code, textStr, type = MSG_MODE_STATIC, onOk = null
-            this.props.app.showMessage(E_CODE_ARG_MISSING, "email is empty!", MSG_MODE_MODAL);
+            //this.props.app.showMessage(E_CODE_ARG_MISSING, "email is empty!", MSG_MODE_MODAL);
         }
-        else if (this.isBlankString(this.state.password)) {
-            this.props.app.showMessage(E_CODE_ARG_MISSING, "password is empty!", MSG_MODE_MODAL);
+        else if (!(this.state.password)) {
+            showError("password is empty" );
         }
         else {
             APIController.login(this.state.email, this.state.password);
         }
     };
     handleReset = () => {
-        if (this.isBlankString(this.state.email)) {
+        const { showError, showMessage } = this.props;
+        if (!(this.state.email)) {
             //code, textStr, type = MSG_MODE_STATIC, onOk = null
-            this.props.app.showMessage(E_CODE_ARG_MISSING, "email is empty!", MSG_MODE_MODAL);
+            showError("email is empty" );
         }
         else {
             APIController.resetPassword(
                 this.state.email,
-                function () {
-                    this.props.app.showMessage(
-                        null,
-                        "A new password has been sent to your e-mail address: " + this.state.email,
-                        MSG_MODE_MODAL
-                    );
-                }.bind(this)
+                 () => {
+                     showMessage(
+                         "Ok!",
+                         "A new password has been sent to your e-mail address: "
+                         + this.state.email
+                     )
+
+                 }
             );
         }
     };
 
-    state = {
-        email: "",
-        password: "",
-        error: '',
-    };
 
     render() {
         return (
-            <div className='login-form'>
-                <style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        height: 100%;
-      }
-    `}</style>
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as='h2' color='teal' textAlign='center'>
@@ -93,9 +95,16 @@ class LoginForm extends React.Component {
                         </Form>
                     </Grid.Column>
                 </Grid>
-            </div>
         );
     }
 };
 
-export default LoginForm;
+function mapStateToProps(state) {
+    return {
+        message: state.message,
+    }
+}
+const mapDispatchToProps = dispatch => ({
+    ...bindActionCreators(messageActions, dispatch),
+});
+export default connect (mapStateToProps, mapDispatchToProps)(LoginForm);

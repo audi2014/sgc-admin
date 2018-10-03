@@ -158,8 +158,7 @@ export default {
     },
 
     connect: function() {
-        //this.app.showMessage('loading', 'connect...');
-        debugger;
+        this.app.showMessage('loading', 'connect...');
         var body = {"dataPrivate": {"context": this.state.context},"dataPublic": {}};
         body = this.EncryptData(body);
         $.ajax({
@@ -566,7 +565,6 @@ export default {
         }
         else {
             this.state.context = this.reedSavedContext();
-            debugger;
             if(!this.state.context.userToken || !this.state.context.userId) {
                 this.connect();
             }
