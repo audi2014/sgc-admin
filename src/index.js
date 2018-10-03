@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/ModalMessage';
+import App from './components/App';
 import {Provider} from 'react-redux';
 import createStore from './store';
 import 'semantic-ui-css/semantic.min.css';

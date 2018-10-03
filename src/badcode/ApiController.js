@@ -170,7 +170,7 @@ export default {
                     this.app.setState({
                         apiStatus: API_NO_AUTH
                     });
-                    //this.hideMessage();
+                    this.app.hideMessage();
                 }
                 else {
                     this.handleApiError( data.error.code,  data.error.message);
@@ -182,7 +182,7 @@ export default {
         });
     },
     login: function(email, password) {
-        this.app.showMessage('loading', 'login...');
+        this.app.showMessage('loading', 'loading...');
         var body = {"dataPrivate": {"context": this.state.context, "password":password},"dataPublic": {"user":{"email":email}}};
         body = this.EncryptData(body);
         $.ajax({
@@ -654,7 +654,7 @@ export default {
     logout: function() {
         this.state.context = false;
         $.cookie('context', "");
-        $.cookie('appId', "");
+        // $.cookie('appId', "");
         this.app.setState({
             apiStatus: API_NO_AUTH
         });

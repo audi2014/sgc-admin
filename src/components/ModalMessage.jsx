@@ -7,14 +7,17 @@ import {bindActionCreators} from "redux";
 class ModalMessage extends React.Component {
     state = { modalOpen: true };
     handleOpen = () => this.setState({ modalOpen: true });
-    handleClose = () => this.setState({ modalOpen: false });
+    handleClose = () => {
+        this.props.hideMessage();
+    }
 
     render() {
-            const { message, title } = this.props.showApiMessage;
+
+            const { message, title } = this.props;
 
         return (
             <Modal
-                open={this.state.modalOpen}
+                open={message}
                 onClose={this.handleClose}
                 basic
                 size='small'
@@ -34,7 +37,8 @@ class ModalMessage extends React.Component {
 };
 function mapStateToProps(state) {
     return {
-        message: state.message,
+        message: state.message.message,
+        title: state.message.title,
     }
 }
 const mapDispatchToProps = dispatch => ({

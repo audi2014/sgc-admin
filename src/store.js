@@ -1,8 +1,8 @@
 import {createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 
 export default () => {
-    const store = createStore (rootReducer, applyMiddleware(logger));
-    return store;
+    return createStore (rootReducer, composeWithDevTools(applyMiddleware(logger)));
 };

@@ -18,16 +18,17 @@ import Header from "./Header";
 import {bindActionCreators} from "redux";
 import * as messageActions from "../actions/message";
 import connect from "react-redux/es/connect/connect";
+import ModalMessage from './ModalMessage';
 
- class App extends React.Component {
+class App extends React.Component {
     componentDidMount = () => {
         APIController.app = this;
         APIController.start();
     };
     showMessage = (code, textStr, type, onOk) => {
 
-        const { showApiMessage } = this.props;
-        showApiMessage({code, message:textStr});
+        const {showApiMessage} = this.props;
+        showApiMessage({code, message: textStr});
 
         // if (type === undefined) type = MSG_MODE_STATIC;
         // if (onOk === undefined) onOk = null;
@@ -46,8 +47,9 @@ import connect from "react-redux/es/connect/connect";
         if (e) {
             e.preventDefault();
         }
-        $('#modalMessage').modal('hide');
-        this.state.lastHideModalTime = parseInt(Date.now());
+        this.props.hideMessage();
+        // $('#modalMessage').modal('hide');
+        // this.state.lastHideModalTime = parseInt(Date.now());
     };
     state = {
         lastHideModalTime: 0,
@@ -147,8 +149,9 @@ import connect from "react-redux/es/connect/connect";
 
     render() {
         return (
-            <div className="app">{this.getContent()}
-
+            <div className="app">
+                <ModalMessage/>
+                {this.getContent()}
             </div>
         );
     }
@@ -159,9 +162,10 @@ function mapStateToProps(state) {
         message: state.message,
     }
 }
+
 const mapDispatchToProps = dispatch => ({
     ...bindActionCreators(messageActions, dispatch),
 });
 
 
-export default connect (mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

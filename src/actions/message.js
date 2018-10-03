@@ -21,6 +21,10 @@ export const showMessage = (title, message) => ({
     payload: {message, title}
 });
 
+export const hideMessage = () => ({
+    type: 'HIDE_MESSAGE',
+});
+
 export const showError = (message) => ({
     type: 'SHOW_MESSAGE',
     payload: {message, title:"Error"}
