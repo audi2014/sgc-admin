@@ -266,7 +266,7 @@ class BookingInfoPanel extends React.Component {
 
     render() {
         var order = {"orderList": []};
-        if (typeof this.state.data.paymentInfo == "string" && !isBlank(this.state.data.paymentInfo)) {
+        if (typeof this.state.data.paymentInfo == "string" && !!(this.state.data.paymentInfo)) {
             try {
                 order.orderList = JSON.parse(this.state.data.paymentInfo).order.orderList;
             }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import isBlank from './Function';
+
 
 class AbstractItemList extends React.Component {
     constructor(props) {
@@ -104,7 +104,7 @@ class AbstractItemList extends React.Component {
 
     getSerchBar() {
         return (<div className="input-group">
-            <input ref="searchInput" type="text" className="form-control input-lg" placeholder="serch"
+            <input ref="searchInput" type="text" className="form-control input-lg" placeholder="search"
                    onChange={this.handleSerchTextChenged}/>
 
             <span className="input-group-btn">
@@ -167,7 +167,7 @@ class AbstractItemList extends React.Component {
                                 function (item, index) {
                                     var className = "list-group-item";
                                     var text = getItemText(item);
-                                    if (isBlank(text)) text = (<u>[empty data]</u>);
+                                    if (!(text)) text = (<u>[empty data]</u>);
                                     if (item.id == selectedId) {
                                         className = "list-group-item active";
                                     }

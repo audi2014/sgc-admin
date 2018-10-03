@@ -20,6 +20,8 @@ import * as messageActions from "../actions/message";
 import connect from "react-redux/es/connect/connect";
 import ModalMessage from './ModalMessage';
 
+import Router from '../router/router';
+
 class App extends React.Component {
     componentDidMount = () => {
         APIController.app = this;
@@ -133,14 +135,15 @@ class App extends React.Component {
                         </div>
                     </div>
                     <div className="container">
-                        <div className="row">
-                            <div className="col-lg-4 col-md-4 col-sm-12">
-                                {itemPanel}
-                            </div>
-                            <div className={itemPanel === false ? "col-sm-12" : "col-lg-8 col-md-8 col-sm-12"}>
-                                {itemView}
-                            </div>
-                        </div>
+                        <Router/>
+                        {/*<div className="row">*/}
+                            {/*<div className="col-lg-4 col-md-4 col-sm-12">*/}
+                                {/*{itemPanel}*/}
+                            {/*</div>*/}
+                            {/*<div className={itemPanel === false ? "col-sm-12" : "col-lg-8 col-md-8 col-sm-12"}>*/}
+                                {/*{itemView}*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             );
