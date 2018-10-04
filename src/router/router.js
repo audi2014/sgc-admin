@@ -1,7 +1,7 @@
 import React from "react"
 import { Router, Link } from "@reach/router"
 import Calendar from "../components/Calendar";
-import ListUser from "../components/ListUser";
+import UserListPage from "../components/user/UserListPage";
 import ListService from "../components/ListService";
 import ListPaidGifts from "../components/ListPaidGifts";
 import ListBookingNew from "../components/ListBookingNew";
@@ -13,7 +13,7 @@ import Settings from "../components/Settings";
 export default () => (
     <Router>
         <Calendar path="/" />
-        <ListUser path="users" />
+        <UserListPage path="users" />
         <ListService path="service" />
         <ListPaidGifts path="paid_gift" />
         <ListBookingNew path="new_orders" />

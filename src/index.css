@@ -1,3 +1,8 @@
+.overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .top-buffer { margin-top:20px; }
 .flex-center {
     text-align: center;
