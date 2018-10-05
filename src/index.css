@@ -52,7 +52,9 @@ body {
 }
 
 .panel-heading {
-    border-radius: 8px;	
+    background: #21ba45;
+    color: white;
+    border-radius: 8px;
 }
 .panel-body {
     min-height: 100px;

@@ -20,4 +20,4 @@ export var API_OFF = 0;
 export var API_NO_AES = 1;
 export var API_NO_AUTH = 2;
 export var API_AUTH_OK = 3;
-export var DEFAULT_PDF_IMG = "img/no-avatar.png";
+export var DEFAULT_PDF_IMG = "https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png";

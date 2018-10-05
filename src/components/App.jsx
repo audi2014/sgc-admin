@@ -133,16 +133,16 @@ class App extends React.Component {
             // 	itemView = <div></div>
             // }
             return (
-                <div className="admin-page">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm-12">
+                <div >
+                    <div >
+                        <div >
+                            <div >
                                 <Header ref="header" selectedItem={this.state.selectedMenuIdx} token={this.state.token}
                                         app={this}/>
                             </div>
                         </div>
                     </div>
-                    <div className="container">
+                    <div>
                         <Router/>
                         {/*<div className="row">*/}
                         {/*<div className="col-lg-4 col-md-4 col-sm-12">*/}
