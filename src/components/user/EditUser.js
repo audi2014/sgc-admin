@@ -22,13 +22,13 @@ const Item = ({selectedValue, value, title, onChange}) => {
             label={title}
         />
     </List.Content>
-</List.Item>)}
+</List.Item>)};
 
 class EditForm extends React.Component {
     state = {};
     handleChange = (e, {value}) => {
 
-        this.props.onEditUser({...this.props.data, userType:value})
+        this.props.onEditUser({...this.props.data, userType:value});
 
         this.setState({value},)
     };

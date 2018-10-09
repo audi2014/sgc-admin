@@ -13,6 +13,7 @@
     "react": "^16.5.2",
     "react-center": "^1.1.1",
     "react-dom": "^16.5.2",
+    "react-number-format": "^3.6.2",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.5",
     "reducers": "^3.0.0-alpha",

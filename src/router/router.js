@@ -2,7 +2,7 @@ import React from "react"
 import { Router, Link } from "@reach/router"
 import Calendar from "../components/Calendar";
 import UserListPage from "../components/user/UserListPage";
-import ListService from "../components/ListService";
+import ListService from "../components/service/ServiceListPage";
 import ListPaidGifts from "../components/ListPaidGifts";
 import ListBookingNew from "../components/ListBookingNew";
 import ListBooking from "../components/ListBooking";

@@ -48,7 +48,7 @@ class ListService extends AbstractItemList {
             'price': 100000,
             'isMulticount': 0,
             'isTemporal': 0
-        }
+        };
         this.setState({
             selectedId: false
         });

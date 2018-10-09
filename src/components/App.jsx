@@ -8,7 +8,7 @@ import CryptoJS from "cryptojs";
 import pickmeup from "pickmeup";
 // import ListUser from "./ListUser";
 import UserListPage from "./user/UserListPage";
-import ListService from "./ListService";
+import ListService from "./service/ServiceListPage";
 import ListBooking from "./ListBooking";
 import ListBookingArchived from "./ListBookingArchived";
 import ListBookingNew from "./ListBookingNew";
@@ -20,7 +20,7 @@ import {bindActionCreators} from "redux";
 import * as messageActions from "../actions/message";
 import connect from "react-redux/es/connect/connect";
 import ModalMessage from './ModalMessage';
-import axios from 'axios';
+
 
 import Router from '../router/router';
 

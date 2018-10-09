@@ -98,7 +98,7 @@ class ListUser extends React.Component {
                                   onItemSelect={this.handleItemSelect}/>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        {this.state.selectedItem && <UserDetails data={this.state.selectedItem}/>}
+                        {selectedItem && <UserDetails data={selectedItem}/>}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns={2}>
@@ -114,8 +114,8 @@ class ListUser extends React.Component {
                                     totalPages={totalPages}/>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        {this.state.selectedItem && <EditForm
-                            data={this.state.selectedItem}
+                        {selectedItem && <EditForm
+                            data={selectedItem}
                             onEditUser={this.handleEditUser}
                         />}
                     </Grid.Column>

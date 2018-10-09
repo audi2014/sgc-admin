@@ -36,7 +36,7 @@ class ListUser extends React.Component {
             page:0,
             orderBy:'id',
             search:'',
-        }
+        };
 
 
         this.onClick = this.onClick.bind(this);
