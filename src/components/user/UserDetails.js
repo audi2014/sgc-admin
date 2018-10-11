@@ -1,5 +1,5 @@
 import React from "react";
-import {Segment, Form, Table} from "semantic-ui-react";
+import { Form, Table} from "semantic-ui-react";
 import Center from 'react-center';
 
 class ReplyForm extends React.Component {
@@ -12,8 +12,6 @@ class ReplyForm extends React.Component {
         const {id, fullName, email, phone, address, city, regDate, zipCode, bedrooms, fullBathrooms, bathroomsWithShower,
             halfBathrooms, levels, dogsPets, catsPets, footage, parkingInDriveway, parkingOnStreet, paidParking} = this.props.data;
         return (
-            <Segment.Group>
-                <Segment>
                     <Form>
                         <Center>
                             <Form.Group>
@@ -129,8 +127,6 @@ class ReplyForm extends React.Component {
                             </Form.Field>
                         </Form.Group>
                     </Form>
-                </Segment>
-            </Segment.Group>
         )
     }
 }

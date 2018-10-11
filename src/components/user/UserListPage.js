@@ -1,9 +1,10 @@
-import {Grid, Icon, Pagination} from 'semantic-ui-react'
+import { Icon, Pagination} from 'semantic-ui-react'
 import React from "react";
 import ApiController from '../../badcode/ApiController';
 import UserList from './UserList';
 import EditForm from './EditUser';
 import UserDetails from './UserDetails';
+import {PageTemplate} from '../Templates';
 
 
 class ListUser extends React.Component {
@@ -35,7 +36,7 @@ class ListUser extends React.Component {
 
     updateUser = (user) => {
 
-        this.setState({selectedItem:user});
+        this.setState({selectedItem: user});
         return ApiController.fetch('admin/edit_user/', {user})
             .then(res => {
                 if (res && res.user) {
@@ -50,6 +51,7 @@ class ListUser extends React.Component {
     componentDidMount() {
         this.load(this.state)
     }
+
     handleEditUser = (user) => {
         this.updateUser(user);
     };
@@ -87,41 +89,42 @@ class ListUser extends React.Component {
     render() {
         const {selectedItem, items, orderBy, totalPages} = this.state;
         return (
-            <Grid inverted stackable>
-                <Grid.Row columns={2}>
-                    <Grid.Column width={5}>
-                        <UserList items={items}
-                                  onSortChange={this.handleSortChange}
-                                  onSearchChange={this.handleSearchChange}
-                                  orderBy={orderBy}
-                                  selectedItemId={selectedItem ? selectedItem.id : null}
-                                  onItemSelect={this.handleItemSelect}/>
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        {selectedItem && <UserDetails data={selectedItem}/>}
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={2}>
-                    <Grid.Column width={5}>
-                        <Pagination defaultActivePage={1}
-                                    onPageChange={this.handlePageChange}
-                                    size='mini'
-                                    ellipsisItem={{content: <Icon name='ellipsis horizontal'/>, icon: true}}
-                                    firstItem={{content: <Icon name='angle double left'/>, icon: true}}
-                                    lastItem={{content: <Icon name='angle double right'/>, icon: true}}
-                                    prevItem={{content: <Icon name='angle left'/>, icon: true}}
-                                    nextItem={{content: <Icon name='angle right'/>, icon: true}}
-                                    totalPages={totalPages}/>
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        {selectedItem && <EditForm
-                            data={selectedItem}
-                            onEditUser={this.handleEditUser}
-                        />}
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        )
+            <PageTemplate
+                listMenu={ [
+                    <UserList
+                        key={1}
+                        items={items}
+                              onSortChange={this.handleSortChange}
+                              onSearchChange={this.handleSearchChange}
+                              orderBy={orderBy}
+                              selectedItemId={selectedItem ? selectedItem.id : null}
+                              onItemSelect={this.handleItemSelect}/>,
+
+                    ]
+                }
+                pagination={ <Pagination defaultActivePage={1}
+                                         onPageChange={this.handlePageChange}
+                                         size='mini'
+                                         ellipsisItem={{content: <Icon name='ellipsis horizontal'/>, icon: true}}
+                                         firstItem={{content: <Icon name='angle double left'/>, icon: true}}
+                                         lastItem={{content: <Icon name='angle double right'/>, icon: true}}
+                                         prevItem={{content: <Icon name='angle left'/>, icon: true}}
+                                         nextItem={{content: <Icon name='angle right'/>, icon: true}}
+                                         totalPages={totalPages}/>}
+                detailsItems={
+                        selectedItem
+                                ? [
+                                    <UserDetails key={1} data={selectedItem}/>,
+                                    <EditForm
+                                        key={2}
+                                        data={selectedItem}
+                                        onEditUser={this.handleEditUser}
+                                    />
+                            ]
+                            : []
+                }
+    />
+    )
     }
 }
 

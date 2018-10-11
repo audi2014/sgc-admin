@@ -22,9 +22,8 @@ class EditService extends React.Component {
     };
 
     handlePriceChange = (e, {name, value}) => {
-        debugger;
-        if(isNaN(+value)) return;
-        this.setState({price: Math.floor(value*100)});
+        if (isNaN(+value)) return;
+        this.setState({price: Math.floor(value * 100)});
     };
 
     toggle = (e, {checked}) => {
@@ -44,85 +43,81 @@ class EditService extends React.Component {
     render() {
         const {name, price, isTemporal, id, deleted} = this.state;
         return (
-            <Segment.Group>
-                <Segment>
-                    <Form>
-                        <Center>
-                            <Form.Group>
-                                <h1>Edit Service {deleted === '1' ? " (DELETED)" : ""}</h1>
-                            </Form.Group>
-                        </Center>
-                        <Form.Group>
-                            <h4>Service name:</h4>
-                        </Form.Group>
-                        <Form.Group>
-                            <Input type="text"
-                                   value={name}
-                                   name="name"
-                                   onChange={this.handleChange}
-                                   style={{overflow: 'auto', width: 700}}
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <h4>Service price:</h4>
-                        </Form.Group>
-                        <Form.Group>
-                            <Input
-                                icon='dollar'
-                                type="text"
-                                value={Math.floor(price / 100)}
-                                name="price"
-                                onChange={this.handlePriceChange}
-                                   style={{overflow: 'auto', width: 700}}
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Radio label='Is time' toggle onChange={this.toggle} checked={isTemporal === '1'}/>
-                        </Form.Group>
-                        <Center>
-                            <Form.Group>
-                                <Button.Group>
-                                    {
-                                        (id)
-                                            ?
-                                            <Button
-                                                disabled={deleted === '1'}
-                                                inverted color='green'
-                                                onClick={this.handleUpdate}
-                                            >
-                                                Update
-                                            </Button>
-                                            :
-                                            <Button
-                                                inverted color='green'
-                                                onClick={this.handleUpdate}
-                                            >
-                                                Create
-                                            </Button>
-                                    }
-                                    <Button.Or/>
-                                    {
-                                        (deleted === '1')
-                                            ? <Button
-                                                inverted color='yellow'
-                                                onClick={this.handleUpdate}
-                                            >
-                                                Restore
-                                            </Button>
-                                            :
-                                            <Button
-                                                inverted color='red'
-                                                onClick={this.handleDelete}
-                                            >
-                                                Delete
-                                            </Button>
-                                    }
-                                </Button.Group>
-                            </Form.Group>
-                        </Center>
-                    </Form>
-                </Segment>
-            </Segment.Group>
+            <Form>
+                <Center>
+                    <Form.Group>
+                        <h1>Edit Service {deleted === '1' ? " (DELETED)" : ""}</h1>
+                    </Form.Group>
+                </Center>
+                <Form.Group>
+                    <h4>Service name:</h4>
+                </Form.Group>
+                <Form.Group>
+                    <Input type="text"
+                           value={name}
+                           name="name"
+                           onChange={this.handleChange}
+                           style={{overflow: 'auto', width: 700}}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <h4>Service price:</h4>
+                </Form.Group>
+                <Form.Group>
+                    <Input
+                        icon='dollar'
+                        type="text"
+                        value={Math.floor(price / 100)}
+                        name="price"
+                        onChange={this.handlePriceChange}
+                        style={{overflow: 'auto', width: 700}}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Radio label='Is time' toggle onChange={this.toggle} checked={isTemporal === '1'}/>
+                </Form.Group>
+                <Center>
+                    <Form.Group>
+                        <Button.Group>
+                            {
+                                (id)
+                                    ?
+                                    <Button
+                                        disabled={deleted === '1'}
+                                        inverted color='green'
+                                        onClick={this.handleUpdate}
+                                    >
+                                        Update
+                                    </Button>
+                                    :
+                                    <Button
+                                        inverted color='green'
+                                        onClick={this.handleUpdate}
+                                    >
+                                        Create
+                                    </Button>
+                            }
+                            <Button.Or/>
+                            {
+                                (deleted === '1')
+                                    ? <Button
+                                        inverted color='yellow'
+                                        onClick={this.handleUpdate}
+                                    >
+                                        Restore
+                                    </Button>
+                                    :
+                                    <Button
+                                        inverted color='red'
+                                        onClick={this.handleDelete}
+                                    >
+                                        Delete
+                                    </Button>
+                            }
+                        </Button.Group>
+                    </Form.Group>
+                </Center>
+            </Form>
         )
     }
 }

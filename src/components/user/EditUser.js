@@ -36,8 +36,6 @@ class EditForm extends React.Component {
     render() {
         const user = this.props.data;
         return (
-            <Segment.Group>
-                <Segment>
                     <Form>
                         <Center>
                             <Form.Group>
@@ -58,8 +56,6 @@ class EditForm extends React.Component {
                             </List>
                         </Form.Group>
                     </Form>
-                </Segment>
-            </Segment.Group>
         )
     }
 }
