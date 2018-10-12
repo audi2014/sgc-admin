@@ -57,9 +57,9 @@ class ReplyForm extends React.Component {
                                 </Table.Body>
                             </Table>
                         </Form.Group>
-                        <Form.Group inline widths='equal'>
+                        <Form.Group inline >
                             <Form.Field>
-                            <Table>
+                            <Table basic='very'>
                                 <Table.Body>
                                     <Table.Row>
                                         <Table.Cell>
@@ -97,10 +97,10 @@ class ReplyForm extends React.Component {
                                         </Table.Cell>
                                     </Table.Row>
                                 </Table.Body>
-                            </Table>
+                            </Table >
                             </Form.Field>
                             <Form.Field>
-                            <Table >
+                            <Table basic='very'>
                                 <Table.Body>
                                     <Table.Row>
                                         <Table.Cell>

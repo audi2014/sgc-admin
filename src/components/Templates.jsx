@@ -2,16 +2,17 @@ import React from "react";
 import { Grid, Segment, Menu, List as SemanitcList } from "semantic-ui-react";
 import Center from 'react-center';
 const PageTemplate = ({
-                            pagination,
+                          pagination,
                           listMenu,
                           detailsItems = [],
                           left = 5,
-                          rightLg = 9,
-                          rightMd = 11,
+                          leftMd = 7,
+                          rightLg = 10,
+                          rightMd = 9,
                       }) => {
     return (
-        <Grid>
-            <Grid.Column mobile={16} tablet={left} computer={left} width={left}>
+        <Grid >
+            <Grid.Column mobile={16} tablet={leftMd} computer={4} width={left}>
                 {listMenu}
                 {pagination}
             </Grid.Column>
@@ -43,6 +44,7 @@ const MenuTemplate = ({ header, items, fotter, topMenu, search, style }) => {
                 <SemanitcList>{items}</SemanitcList>
             </Menu.Item>
             <Menu.Item>{fotter}</Menu.Item>
+
         </Menu>
     );
 };

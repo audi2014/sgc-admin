@@ -197,6 +197,7 @@ export default {
         });
     },
     login: function (email, password) {
+
         this.app.showMessage('loading', 'loading...');
         var body = {
             "dataPrivate": {"context": this.state.context, "password": password},
@@ -320,7 +321,8 @@ export default {
     },
     reedSavedContext: function () {
         var oldCookie = $.cookie('context');
-        if (oldCookie == null || isBlank(oldCookie)) {
+        debugger;
+        if (oldCookie == null || isBlank(oldCookie) ) {
             return {appId: this.reedSavedAppId(), clientVersion: "reactClientV1b", userToken: null, userId: null};
         }
         else {
@@ -334,6 +336,8 @@ export default {
         this.app.setState({
             apiStatus: API_NO_AUTH
         });
+        return this.start();
+
 
     },
     saveContext: function (context) {

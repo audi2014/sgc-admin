@@ -76,7 +76,6 @@ class LoginForm extends React.Component {
                                 />
                                 <Form.Input
                                     fluid
-                                    iconPosition='left'
                                     placeholder='Password'
                                     type='password'
                                     onChange={this.handlePasswordChange}

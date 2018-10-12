@@ -9,7 +9,7 @@ class ModalMessage extends React.Component {
     handleOpen = () => this.setState({ modalOpen: true });
     handleClose = () => {
         this.props.hideMessage();
-    }
+    };
 
     render() {
 

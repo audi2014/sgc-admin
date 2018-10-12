@@ -37,7 +37,8 @@ class PaidGiftDetails extends React.Component {
                     </Form.Group>
                 </Center>
                 <Form.Group>
-                    <Table style={{height: 600}}>
+                    <Form.Field>
+                    <Table >
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Purchaser</Table.HeaderCell>
@@ -73,7 +74,9 @@ class PaidGiftDetails extends React.Component {
                             </Line>
                         </Table.Body>
                     </Table>
-                    <Table attached>
+                    </Form.Field>
+                        <Form.Field>
+                    <Table  attached>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Recipient</Table.HeaderCell>
@@ -129,6 +132,7 @@ class PaidGiftDetails extends React.Component {
                             </Line>
                         </Table.Body>
                     </Table>
+                        </Form.Field>
                 </Form.Group>
                 <Form.Group>
                     <h3>Admin notes:</h3>

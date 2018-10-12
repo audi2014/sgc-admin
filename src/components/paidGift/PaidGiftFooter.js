@@ -31,7 +31,7 @@ class PaidGiftFooter extends React.Component {
     render() {
         const {isProcessed, adminComment, isArchived} = this.state;
         return (
-            <Form>
+            <div>
                 <Form.Group>
                     {
                         isProcessed === '1'
@@ -70,7 +70,7 @@ class PaidGiftFooter extends React.Component {
                         </Button.Group>
                     </Form.Group>
                 </Center>
-            </Form>
+            </div>
         )
     }
 

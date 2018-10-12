@@ -1,4 +1,4 @@
-import { Icon, Pagination} from 'semantic-ui-react'
+import { Icon, Pagination, Grid} from 'semantic-ui-react'
 import React from "react";
 import ApiController from '../../badcode/ApiController';
 import UserList from './UserList';
@@ -90,7 +90,7 @@ class ListUser extends React.Component {
         const {selectedItem, items, orderBy, totalPages} = this.state;
         return (
             <PageTemplate
-                listMenu={ [
+                listMenu={
                     <UserList
                         key={1}
                         items={items}
@@ -98,19 +98,23 @@ class ListUser extends React.Component {
                               onSearchChange={this.handleSearchChange}
                               orderBy={orderBy}
                               selectedItemId={selectedItem ? selectedItem.id : null}
-                              onItemSelect={this.handleItemSelect}/>,
+                              onItemSelect={this.handleItemSelect}/>
 
-                    ]
+
                 }
-                pagination={ <Pagination defaultActivePage={1}
+                pagination={ <Pagination
+                    as={Grid.Column}
+                    defaultActivePage={1}
+                                         firstItem={null}
+                                         lastItem={null}
                                          onPageChange={this.handlePageChange}
                                          size='mini'
                                          ellipsisItem={{content: <Icon name='ellipsis horizontal'/>, icon: true}}
-                                         firstItem={{content: <Icon name='angle double left'/>, icon: true}}
-                                         lastItem={{content: <Icon name='angle double right'/>, icon: true}}
                                          prevItem={{content: <Icon name='angle left'/>, icon: true}}
                                          nextItem={{content: <Icon name='angle right'/>, icon: true}}
-                                         totalPages={totalPages}/>}
+                                         boundaryRange={0}
+                                         totalPages={totalPages}
+                />}
                 detailsItems={
                         selectedItem
                                 ? [
