@@ -12,7 +12,7 @@ class ListBookingNew extends ListBooking {
     }
 
     componentDidMount() {
-        var dateRange = this.refs.dateRange;
+        const dateRange = this.refs.dateRange;
         pickmeup(dateRange, {
             date: [new Date(Date.now() - 86400000), new Date(2027, 0, 1)],
             format: 'm/d/Y',

@@ -50,7 +50,6 @@ class ListPaidGifts extends React.Component {
     };
 
     handleUpdateGiftPayments = data => {
-        debugger;
         this.updateGiftPayments(data);
     };
 

@@ -9,7 +9,7 @@ class ReplyForm extends React.Component {
     }
 
     render() {
-        const {id, fullName, email, phone, address, city, regDate, zipCode, bedrooms, fullBathrooms, bathroomsWithShower,
+        const { fullName, email, phone, address, city, regDate, zipCode, bedrooms, fullBathrooms, bathroomsWithShower,
             halfBathrooms, levels, dogsPets, catsPets, footage, parkingInDriveway, parkingOnStreet, paidParking} = this.props.data;
         return (
                     <Form>

@@ -4,9 +4,14 @@ import Calendar from "../components/Calendar";
 import UserListPage from "../components/user/UserListPage";
 import ListService from "../components/service/ServiceListPage";
 import ListPaidGifts from "../components/paidGift/PaidGiftListPage";
-import ListBookingNew from "../components/ListBookingNew";
-import ListBooking from "../components/ListBooking";
-import ListBookingArchived from "../components/ListBookingArchived";
+import ListBooking, {
+        loadNewBookings,
+    loadAllBookings,
+    loadArchivedBookings,
+    filterNewBookings,
+    filterArchivedBookings,
+    filterAllBookings,
+}  from "../components/orders/NewBookingListPage";
 import Settings from "../components/Settings";
 
 
@@ -16,9 +21,9 @@ export default () => (
         <UserListPage path="users" />
         <ListService path="service" />
         <ListPaidGifts path="paid_gift" />
-        <ListBookingNew path="new_orders" />
-        <ListBooking path="orders" />
-        <ListBookingArchived path="trashed_orders" />
+        <ListBooking path="new_orders" load={loadNewBookings} itemsFilter={filterNewBookings} />
+        <ListBooking path="orders" load={loadAllBookings} itemsFilter={filterAllBookings} />
+        <ListBooking path="trashed_orders" load={loadArchivedBookings} itemsFilter={filterArchivedBookings}  />
         <Settings path="settings" />
     </Router>
 );

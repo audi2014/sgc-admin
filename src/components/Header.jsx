@@ -46,13 +46,13 @@ class Header extends React.Component {
                 <Dropdown style={cssNav} item text="Orders">
                     <Dropdown.Menu>
                         <LinkedMenuItem icon="gift" name="Paid gifts" to="/paid_gift" />
-                        {/*  <LinkedMenuItem
+                        {<LinkedMenuItem
                             icon="lightning"
                             name="New Orders!"
                             to="/new_orders"
-                        />*/}
-                        {/*<LinkedMenuItem name="Orders" to="/orders" />*/}
-                        {/*<LinkedMenuItem name="Trashed Orders" to="/trashed_orders" />*/}
+                        />}
+                        {<LinkedMenuItem name="Orders" to="/orders" />}
+                        {<LinkedMenuItem name="Trashed Orders" to="/trashed_orders" />}
                     </Dropdown.Menu>
                 </Dropdown>
 

@@ -321,7 +321,6 @@ export default {
     },
     reedSavedContext: function () {
         var oldCookie = $.cookie('context');
-        debugger;
         if (oldCookie == null || isBlank(oldCookie) ) {
             return {appId: this.reedSavedAppId(), clientVersion: "reactClientV1b", userToken: null, userId: null};
         }
