@@ -55,24 +55,21 @@ class ListBookingNew extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedNewOrders: null,
-            newOrders: [],
+            selectedItem: null,
+            items: [],
             page: 0,
             startDate: '',
             endDate: '',
             search: '',
             userInfo: null,
-            adminComment: '',
-            isProcessed: '',
-            isArchived: ''
 
         };
     }
 
     setBookingIsProcessed = ({id, adminComment}) => {
 
-        this.state.selectedNewOrders.isProcessed = '1';
-        this.state.selectedNewOrders.adminComment = adminComment;
+
+
 
         return ApiController.fetch('admin/set_booking_processed/', {
             bookingId: id,
@@ -80,14 +77,19 @@ class ListBookingNew extends React.Component {
         })
             .then(res => {
                 if (res) {
-                    this.setState({adminComment: res.adminComment})
+                    this.state.selectedItem.isProcessed = '1';
+                    this.state.selectedItem.adminComment = adminComment;
+                    this.setState({
+                        items:[...this.state.items],
+                        selectedItem:{...this.state.selectedItem}
+                    })
                 }
             })
     };
     getOrders = ({startDate, endDate, page, search}) => {
         return this.props.load({startDate, endDate, page, search})
             .then(bookingList => {
-                this.setState({newOrders: bookingList});
+                this.setState({items: bookingList});
             })
     };
     getUser = (id) => {
@@ -116,31 +118,31 @@ class ListBookingNew extends React.Component {
     }
 
     handleBookingSelect = (id) => {
-        const booking = this.state.newOrders.find(
+        const booking = this.state.items.find(
             obj => Number(obj.id) === Number(id)
         );
-        this.setState({selectedNewOrders: booking});
+        this.setState({selectedItem: booking});
         this.getUser(booking.userId)
     };
 
 
     render() {
         const {itemsFilter} = this.props;
-        const {newOrders, selectedNewOrders, userInfo} = this.state;
+        const {items, selectedItem, userInfo} = this.state;
         return (
             <PageTemplate
                 listMenu={<OrderList
-                    bookings={itemsFilter(newOrders)}
-                    selectedOrdersId={selectedNewOrders ? selectedNewOrders.id : null}
+                    bookings={itemsFilter(items)}
+                    selectedOrdersId={selectedItem ? selectedItem.id : null}
                     onBookingSelect={this.handleBookingSelect}
                 />}
                 detailsItems={
-                    selectedNewOrders
+                    selectedItem
                         ? [
                             <BookingDetails
 
                                 key={1}
-                                data={selectedNewOrders}
+                                data={selectedItem}
                                 onBookingProcessed={this.setBookingIsProcessed}
 
                             />,

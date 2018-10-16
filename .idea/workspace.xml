@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04c574d7-cbf3-4007-ac1f-adce21ae9ea7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/orders/BookingDetails.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/orders/BookingFooter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/orders/BookingList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/orders/NewBookingListPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/badcode/ApiController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/badcode/ApiController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ListBookingNew.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ListBookingNew.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/paidGift/PaidGiftListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/paidGift/PaidGiftListPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/UserDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/UserDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/orders/NewBookingListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/orders/NewBookingListPage.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +54,7 @@
         <counts>
           <entry key="css" value="30" />
           <entry key="gitignore" value="5" />
-          <entry key="js" value="13235" />
+          <entry key="js" value="13294" />
           <entry key="jsx" value="3449" />
         </counts>
       </usages-collector>
@@ -72,7 +62,7 @@
         <counts>
           <entry key="CSS" value="30" />
           <entry key="JSX Harmony" value="3447" />
-          <entry key="JavaScript" value="13235" />
+          <entry key="JavaScript" value="13294" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
@@ -106,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/orders/NewBookingListPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="66" column="15" selection-start-line="64" selection-start-column="12" selection-end-line="66" selection-end-column="15" />
+            <state relative-caret-position="119">
+              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -219,9 +209,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ApiController</find>
-      <find>tryGet</find>
-      <find>modal</find>
       <find>connect</find>
       <find>pick</find>
       <find>React.Component</find>
@@ -249,6 +236,9 @@
       <find>reedSavedContext</find>
       <find>getNewOrders</find>
       <find>adminComment</find>
+      <find>userInfo</find>
+      <find>NewOrders</find>
+      <find>selectedOrdersId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -455,12 +445,12 @@
       <workItem from="1539239533411" duration="24345000" />
       <workItem from="1539325076511" duration="25043000" />
       <workItem from="1539583718518" duration="25927000" />
-      <workItem from="1539671135841" duration="3452000" />
+      <workItem from="1539671135841" duration="3957000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285823000" />
+    <option name="totallyTimeSpent" value="286328000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -472,7 +462,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26172465" />
@@ -900,8 +890,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/orders/NewBookingListPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="66" column="15" selection-start-line="64" selection-start-column="12" selection-end-line="66" selection-end-column="15" />
+        <state relative-caret-position="119">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
