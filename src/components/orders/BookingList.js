@@ -1,13 +1,14 @@
 import React from "react";
 import {MenuTemplate} from '../Templates';
 import {List} from "semantic-ui-react";
+import BookingPicker from './BookingPicker';
 
 const bookingToTitle = (booking) => {
     const services = booking.orderList.map(({service,count})=>service.name).join(', ')
     return `${booking.meetingDate} ${services}`
 };
 
-export default ({bookings,  selectedOrdersId, onBookingSelect}) => {
+export default ({bookings,  selectedOrdersId, onBookingSelect, onBookingLoad}) => {
     const handleBookingClick = (e) => {
         onBookingSelect(e.currentTarget.id);
     };
@@ -15,6 +16,9 @@ export default ({bookings,  selectedOrdersId, onBookingSelect}) => {
         <MenuTemplate
             style={{overflow: 'auto', maxHeight: 650}}
             header={<h1>Booking List</h1>}
+            topMenu={<BookingPicker
+                onBookingLoad={onBookingLoad}
+            />}
             items={
                 bookings
                 .map(c => (

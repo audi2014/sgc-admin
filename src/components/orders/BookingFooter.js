@@ -23,12 +23,12 @@ class BookingFooter extends React.Component {
     toggleProcessed = () => {
         const isProcessed = true;
         this.setState({isProcessed});
-        this.props.onBookingProcessed({...this.state, isProcessed });
+        this.props.setBookingAdminData({...this.state, isProcessed });
     };
     toggleArchive = () => {
         const isArchived = !this.state.isArchived;
         this.setState({isArchived});
-        this.props.updateGiftPayments({...this.state, isArchived });
+        this.props.setBookingAdminData({...this.state, isArchived });
     };
     handleCommentChange = (e) => {
         this.setState({adminComment: e.currentTarget.value});
@@ -52,26 +52,25 @@ class BookingFooter extends React.Component {
                             {
                                 isProcessed
                                     ? <Button
+                                        disabled
                                         color='green'
                                         onClick={this.toggleProcessed}>
-                                        Processed
+                                        Approved
                                     </Button>
                                     : <Button
                                         onClick={this.toggleProcessed}
                                         color='green'
                                     >
-                                        Set processed
+                                        Set Approved
                                     </Button>
                             }
                             <Button.Or/>
-
                             <Button
                                 onClick={this.toggleArchive}
                                 color={isArchived ? 'green' : 'orange'}
                             >
                                 {isArchived ? 'Put back': 'Move to trash'}
                             </Button>
-
                         </Button.Group>
                     </Form.Group>
                 </Center>

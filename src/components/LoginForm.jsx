@@ -28,8 +28,6 @@ class LoginForm extends React.Component {
 
         if (!(this.state.email)) {
             showError("email is empty" );
-            //code, textStr, type = MSG_MODE_STATIC, onOk = null
-            //this.props.app.showMessage(E_CODE_ARG_MISSING, "email is empty!", MSG_MODE_MODAL);
         }
         else if (!(this.state.password)) {
             showError("password is empty" );
@@ -47,14 +45,14 @@ class LoginForm extends React.Component {
         else {
             APIController.resetPassword(
                 this.state.email,
-                 () => {
-                     showMessage(
-                         "Ok!",
-                         "A new password has been sent to your e-mail address: "
-                         + this.state.email
-                     )
+                () => {
+                    showMessage(
+                        "Ok!",
+                        "A new password has been sent to your e-mail address: "
+                        + this.state.email
+                    )
 
-                 }
+                }
             );
         }
     };
@@ -62,38 +60,38 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-                <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' color='teal' textAlign='center'>
-                            Login as admin
-                        </Header>
-                        <Form size='large'>
-                            <Segment stacked>
-                                <Form.Input
-                                    fluid icon='user'
-                                    placeholder='E-mail address'
-                                    onChange={this.handleEmailChange}
-                                />
-                                <Form.Input
-                                    fluid
-                                    placeholder='Password'
-                                    type='password'
-                                    onChange={this.handlePasswordChange}
-                                    value={this.state.password}
-                                />
+            <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 450 }}>
+                    <Header as='h2' color='teal' textAlign='center'>
+                        Login as admin
+                    </Header>
+                    <Form size='large'>
+                        <Segment stacked>
+                            <Form.Input
+                                fluid icon='user'
+                                placeholder='E-mail address'
+                                onChange={this.handleEmailChange}
+                            />
+                            <Form.Input
+                                fluid
+                                placeholder='Password'
+                                type='password'
+                                onChange={this.handlePasswordChange}
+                                value={this.state.password}
+                            />
 
-                                <Button color='teal'
-                                        onClick={this.handleLogin}>
-                                    Login
-                                </Button>
-                                <Button color='teal'
-                                        onClick={this.handleReset}>
-                                    Reset password
-                                </Button>
-                            </Segment>
-                        </Form>
-                    </Grid.Column>
-                </Grid>
+                            <Button color='teal'
+                                    onClick={this.handleLogin}>
+                                Login
+                            </Button>
+                            <Button color='teal'
+                                    onClick={this.handleReset}>
+                                Reset password
+                            </Button>
+                        </Segment>
+                    </Form>
+                </Grid.Column>
+            </Grid>
         );
     }
 };

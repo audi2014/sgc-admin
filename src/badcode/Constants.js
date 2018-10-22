@@ -21,3 +21,21 @@ export var API_NO_AES = 1;
 export var API_NO_AUTH = 2;
 export var API_AUTH_OK = 3;
 export var DEFAULT_PDF_IMG = "https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png";
+
+export const jsDateToServerDate = (jsDate) => {
+    var y = jsDate.getFullYear();
+    var m = jsDate.getMonth()+1;
+    var d = jsDate.getDate();
+    return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d);
+};
+
+export const getMonthStartEnd =(date) => {
+    var y = date.getFullYear();
+    var m = date.getMonth();
+    var ds = new Date(y, m, 1).getDate();
+    var de = new Date(y, m + 1, 0).getDate();
+    m += 1;
+    var startDate = y + '-' + (m < 10 ? '0' + m : m) + '-' + (ds < 10 ? '0' + ds : ds);
+    var endDate = y + '-' + (m < 10 ? '0' + m : m) + '-' + (de < 10 ? '0' + de : de);
+    return {startDate: startDate, endDate: endDate};
+};

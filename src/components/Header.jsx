@@ -41,7 +41,7 @@ class Header extends React.Component {
     render() {
         return (
             <Menu as={Grid} style={cssNav}>
-                {/*<LinkedMenuItem icon="calendar check outline" name="Calendar" to="/" />*/}
+                {<LinkedMenuItem icon="calendar check outline" name="Calendar" to="/calendar" />}
 
                 <Dropdown style={cssNav} item text="Orders">
                     <Dropdown.Menu>
@@ -60,7 +60,7 @@ class Header extends React.Component {
                     <Dropdown.Menu>
                         <LinkedMenuItem name="Users" to="/users" />
                         <LinkedMenuItem name="Services" to="/service" />
-                        {/*<LinkedMenuItem name="Set Password" to="/settings" />*/}
+                        {<LinkedMenuItem name="Set Password" to="/settings" />}
                     </Dropdown.Menu>
                 </Dropdown>
 

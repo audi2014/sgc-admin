@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Segment, Menu, List as SemanitcList } from "semantic-ui-react";
 import Center from 'react-center';
+import TimeAdjustment from "./calendar/TimeAdjustment";
 const PageTemplate = ({
                           pagination,
                           listMenu,
@@ -25,9 +26,8 @@ const PageTemplate = ({
 
 const MenuTemplate = ({ header, items, fotter, topMenu, search, style }) => {
     return (
-        <Menu fluid vertical size="large" style={style} >
+        <Menu fluid vertical size="large" style={ {minHeight:500, ...style} } >
             <Menu.Item>
-
                 <Menu.Header>
                     <Center>
                     {header}

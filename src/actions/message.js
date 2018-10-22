@@ -14,7 +14,7 @@ const errorCodeToTitle = (code) => {
         default:
             return "No title";
     }
-}
+};
 
 export const showMessage = (title, message) => ({
     type: 'SHOW_MESSAGE',

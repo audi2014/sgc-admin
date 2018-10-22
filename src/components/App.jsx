@@ -9,57 +9,32 @@ import pickmeup from "pickmeup";
 // import ListUser from "./ListUser";
 import UserListPage from "./user/UserListPage";
 import ListService from "./service/ServiceListPage";
-import ListBooking from "./ListBooking";
-import ListBookingArchived from "./ListBookingArchived";
-import ListBookingNew from "./ListBookingNew";
-import ListPaidGifts from "./ListPaidGifts";
-import AesKeyForm from "./KeyForm";
-import LoginForm from "./LoginForm";
 import Header from "./Header";
 import {bindActionCreators} from "redux";
 import * as messageActions from "../actions/message";
 import connect from "react-redux/es/connect/connect";
 import ModalMessage from './ModalMessage';
+import LoginForm from "./LoginForm";
 
 
 import Router from '../router/router';
 
 class App extends React.Component {
-    //  componentWillMount() {
-    //           const {setBooks} = this.props;
-    //          axios.get('http://lowcost-env.cbgaq2vptb.us-west-2.elasticbeanstalk.com/api/dev-v7/admin/get_all_users/').then(({data}) => {
-    //              setBooks(data);
-    //       });
     componentDidMount() {
         APIController.app = this;
         APIController.start();
     };
 
-    showMessage = (code, textStr, type, onOk) => {
+    showMessage = (code, textStr) => {
 
         const {showApiMessage} = this.props;
         showApiMessage({code, message: textStr});
-
-        // if (type === undefined) type = MSG_MODE_STATIC;
-        // if (onOk === undefined) onOk = null;
-        // var timeOffset = Date.now() - this.state.lastHideModalTime;
-        // if (timeOffset > 300) {
-        //     $('#modalMessage').modal('show');
-        // }
-        // this.setState({
-        //     msgType: type,
-        //     messageCode: code,
-        //     messageText: textStr,
-        //     onDialogOk: onOk
-        // });
     };
     hideMessage = (e) => {
         if (e) {
             e.preventDefault();
         }
         this.props.hideMessage();
-        // $('#modalMessage').modal('hide');
-        // this.state.lastHideModalTime = parseInt(Date.now());
     };
     state = {
         lastHideModalTime: 0,
@@ -70,37 +45,37 @@ class App extends React.Component {
         itemPanel: false,
         itemView: false
     };
-    setItemPanel = (idx) => {
-        var items = false;
-        switch (idx) {
-            case "0":
-                items = (<UserListPage />);
-                break;
-            case "1":
-                items = (<ListService app={this}/>);
-                break;
-            case "2":
-                items = (<ListBooking app={this}/>);
-                break;
-            case "5":
-                items = (<ListBookingArchived app={this}/>);
-                break;
-            case "7":
-                items = (<ListBookingNew app={this}/>);
-                break;
-            case "8":
-                items = (<ListPaidGifts app={this}/>);
-                break;
-            default:
-                break;
-        }
+ //   setItemPanel = (idx) => {
+   //     var items = false;
+  //      switch (idx) {
+  //          case "0":
+   //             items = (<UserListPage />);
+   //             break;
+   //         case "1":
+   //             items = (<ListService app={this}/>);
+   //             break;
+   //         case "2":
+    //            items = (<ListBooking app={this}/>);
+    //            break;
+     //       case "5":
+     //           items = (<ListBookingArchived app={this}/>);
+     //           break;
+    //        case "7":
+      //          items = (<ListBookingNew app={this}/>);
+     //           break;
+      //      case "8":
+        //        items = (<ListPaidGifts app={this}/>);
+       //         break;
+      //      default:
+        //        break;
+      //  }
 
-        this.setState({
-            itemPanel: items,
-            selectedMenuIdx: idx
-        });
+    //    this.setState({
+      //      itemPanel: items,
+     //       selectedMenuIdx: idx
+      //  });
 
-    };
+    //};
     setView = (val) => {
         this.setState({
             itemView: val
@@ -115,23 +90,11 @@ class App extends React.Component {
         if (this.state.apiStatus === API_OFF) {
             return (<div/>);
         }
-        else if (this.state.apiStatus == API_NO_AES) {
-            APIController.app = this;
-            return (<AesKeyForm app={this}/>);
-        }
         else if (this.state.apiStatus == API_NO_AUTH) {
             APIController.app = this;
             return (<LoginForm app={this}/>);
         }
         else if (this.state.apiStatus == API_AUTH_OK) {
-            var itemPanel = this.state.itemPanel;
-            var itemView = this.state.itemView;
-            // if(itemPanel === false) {
-            // 	itemPanel = <div></div>
-            // }
-            // if(itemView === false) {
-            // 	itemView = <div></div>
-            // }
             return (
                 <div >
                     <div >
@@ -144,14 +107,6 @@ class App extends React.Component {
                     </div>
                     <div>
                         <Router/>
-                        {/*<div className="row">*/}
-                        {/*<div className="col-lg-4 col-md-4 col-sm-12">*/}
-                        {/*{itemPanel}*/}
-                        {/*</div>*/}
-                        {/*<div className={itemPanel === false ? "col-sm-12" : "col-lg-8 col-md-8 col-sm-12"}>*/}
-                        {/*{itemView}*/}
-                        {/*</div>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             );

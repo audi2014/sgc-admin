@@ -29,8 +29,8 @@ const Priorities = ({priorities}) => {
             <h3>Priority List</h3>
             {
                 priorities.map(c =>
-                    <List>
-                        <List.Item>{c}</List.Item>
+                    <List as='ul'>
+                        <List.Item  as='li'>{c}</List.Item>
 
                     </List>
                 )
@@ -83,7 +83,7 @@ class BookingDetails extends React.Component {
             homeAccess_provideCode, zipCode, dirtyLevel, meetingDate, interval, adminComment, comment, orderList, id,
             isProcessed, isArchived, priorityList, attachmentList
         } = this.props.data;
-        const {onBookingProcessed} = this.props;
+        const {setBookingAdminData} = this.props;
         const parsedInfo = JSON.parse(paymentInfo);
         return (
             <Form>
@@ -147,7 +147,7 @@ class BookingDetails extends React.Component {
                 </Form.Group>
                 <BookingFooter
                     data={{id, adminComment, isArchived, isProcessed}}
-                    onBookingProcessed={onBookingProcessed}
+                    setBookingAdminData={setBookingAdminData}
                 />
             </Form>
         )
