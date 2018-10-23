@@ -2,11 +2,10 @@ import React from "react";
 import ApiController from '../../badcode/ApiController';
 import {Segment, Form, Header, Button, Grid} from 'semantic-ui-react';
 import { navigate } from "@reach/router";
-import ModalMessage from "../ModalMessage";
 import {bindActionCreators} from "redux";
 import * as messageActions from "../../actions/message";
 import connect from "react-redux/es/connect/connect";
-import {MSG_MODE_MODAL} from "../../badcode/Constants";
+
 
 
 class Settings extends React.Component {

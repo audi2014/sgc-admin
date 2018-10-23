@@ -61,6 +61,7 @@ class Header extends React.Component {
                         <LinkedMenuItem name="Users" to="/users" />
                         <LinkedMenuItem name="Services" to="/service" />
                         {<LinkedMenuItem name="Set Password" to="/settings" />}
+                        {<LinkedMenuItem name="Add Cleaner" to="/cleaner" />}
                     </Dropdown.Menu>
                 </Dropdown>
 
