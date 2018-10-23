@@ -1,14 +1,11 @@
 import React from "react";
 import APIController from "../badcode/ApiController";
-import {API_AUTH_OK, API_NO_AES, API_NO_AUTH, API_OFF, MSG_MODE_STATIC} from "../badcode/Constants";
+import {API_AUTH_OK, API_NO_AUTH, API_OFF} from "../badcode/Constants";
 import $ from "jquery";
 import modal from "jquery-modal";
 import cookie from "jquery.cookie";
 import CryptoJS from "cryptojs";
 import pickmeup from "pickmeup";
-// import ListUser from "./ListUser";
-import UserListPage from "./user/UserListPage";
-import ListService from "./service/ServiceListPage";
 import Header from "./Header";
 import {bindActionCreators} from "redux";
 import * as messageActions from "../actions/message";

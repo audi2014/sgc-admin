@@ -13,7 +13,6 @@ class CalendarLoad extends React.Component {
             ...getMonthStartEnd(new Date()),
             items: null,
             availableHours: [],
-            zipCodes: [],
             date: currentDate,
             selectedDay: null,
             selectedBookings: [],
@@ -48,20 +47,6 @@ class CalendarLoad extends React.Component {
             })
     };
 
-
-    getAvailableZipCodes = () => {
-        return ApiController.fetch('user/get_available_zip_codes/', {
-            year: this.state.date.getFullYear(),
-            month: this.state.date.getMonth()
-        })
-            .then(res => {
-                if (res) {
-                    this.setState({
-                        zipCodes: res[''],
-                    })
-                }
-            })
-    };
     loadUsersOfBookingArray = (bookingArray) => {
         //получаем массив ид пользователей из массива букингов
         const userIds = bookingArray.map(c => c.userId);
@@ -117,7 +102,6 @@ class CalendarLoad extends React.Component {
 
     componentDidMount() {
         this.getOrders(this.state);
-        this.getAvailableZipCodes(this.state)
     }
 
     handleItemSelect = (date) => {
@@ -129,9 +113,6 @@ class CalendarLoad extends React.Component {
         const selectedBookings = this.state.items.filter(
             obj => obj.meetingDate === dateStr
         );
-
-        console.log('selectedBookings', selectedBookings)
-        console.log('day', day)
 
         this.loadUsersOfBookingArray(selectedBookings);
 

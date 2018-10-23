@@ -4,6 +4,8 @@ import Calendar from "../components/calendar/CalendarLoad";
 import UserListPage from "../components/user/UserListPage";
 import ListService from "../components/service/ServiceListPage";
 import ListPaidGifts from "../components/paidGift/PaidGiftListPage";
+import ZipCodsLoad from '../components/zipCods/ZipCodsLoad';
+
 import ListBooking, {
     filterNewBookings,
     filterArchivedBookings,
@@ -19,6 +21,7 @@ import Settings from "../components/settings/Settings";
 
 export default () => (
     <Router>
+        <ZipCodsLoad path='zip_cods'/>
         <ListPaidGifts path="/" />
         <UserListPage path="users" />
         <ListService path="service" />
