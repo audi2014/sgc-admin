@@ -28,8 +28,8 @@ const Priorities = ({priorities}) => {
         <Form.Group grouped>
             <h3>Priority List</h3>
             {
-                priorities.map(c =>
-                    <List as='ul'>
+                priorities.map((c,key) =>
+                    <List key={key} as='ul'>
                         <List.Item  as='li'>{c}</List.Item>
 
                     </List>

@@ -43,6 +43,7 @@ class Header extends React.Component {
             <Menu as={Grid} style={cssNav}>
                 {<LinkedMenuItem icon="calendar check outline" name="Calendar" to="/calendar" />}
                 {<LinkedMenuItem  name="Zip_Cods" to="/zip_cods" />}
+                {<LinkedMenuItem  name="List Of Jobs" to="/jobs" />}
                 <Dropdown style={cssNav} item text="Orders">
                     <Dropdown.Menu>
                         <LinkedMenuItem icon="gift" name="Paid gifts" to="/paid_gift" />

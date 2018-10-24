@@ -4,10 +4,12 @@ import {PageTemplate} from '../Templates';
 import OrderList from './BookingList';
 import BookingDetails from './BookingDetails';
 import UserDetails from "../user/UserDetails";
+import { getMonthStartEnd} from '../../badcode/Constants';
 
 export const filterNewBookings = array => array.filter(c=> !+c.isProcessed &&  !+c.isArchived);
 export const filterArchivedBookings = array => array.filter(c=> +c.isArchived);
 export const filterAllBookings = array => array;
+
 
 class ListBookingNew extends React.Component {
     constructor(props) {
@@ -16,8 +18,8 @@ class ListBookingNew extends React.Component {
             selectedItem: null,
             items: [],
             page: 0,
-            startDate: '',
-            endDate: '',
+            year: new Date().getFullYear(),
+            month:  new Date().getMonth(),
             search: '',
             userInfo: null,
 
@@ -43,11 +45,12 @@ class ListBookingNew extends React.Component {
                 }
             })
     };
-    getOrders = ({startDate, endDate, page, search}) => {
+    getOrders = ({month, year, page, search}) => {
+        const date = (isFinite(month) && isFinite(year)) ? new Date(year, month) : new Date();
+        this.setState({year:date.getFullYear(), month:date.getMonth()});
         return this.props.load(
             {
-                startDate: startDate || '1999-01-01',
-                endDate: endDate || '2019-01-01',
+                 ...getMonthStartEnd(date),
                 serch: search || ''
             }
         )

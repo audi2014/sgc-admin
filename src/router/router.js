@@ -6,6 +6,7 @@ import ListService from "../components/service/ServiceListPage";
 import ListPaidGifts from "../components/paidGift/PaidGiftListPage";
 import ZipCodsLoad from '../components/zipCods/ZipCodsLoad';
 import AddCleaner from '../components/cleaner/AddCleaner';
+import ListOfJobs from '../components/jobs/ListOfJobs';
 
 import ListBooking, {
     filterNewBookings,
@@ -22,6 +23,7 @@ import Settings from "../components/settings/Settings";
 
 export default () => (
     <Router>
+        <ListOfJobs path='jobs'/>
         <AddCleaner path='cleaner'/>
         <ZipCodsLoad path='zip_cods'/>
         <ListPaidGifts path="/" />
