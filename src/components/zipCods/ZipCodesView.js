@@ -25,7 +25,7 @@ export default ({
         //inputRef.value - получаем значение по ссылке из инпута
         const code = this.inputs[dayOfWeek].inputRef.value;
         //очищаем инпут
-        this.inputs[dayOfWeek].inputRef.value = ''
+        this.inputs[dayOfWeek].inputRef.value = '';
 
         //делаем глубокую копию данных сервера
         const codesCopy = JSON.parse(JSON.stringify(codes));

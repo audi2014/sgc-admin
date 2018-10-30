@@ -24,7 +24,7 @@ const PageTemplate = ({
     );
 };
 
-const MenuTemplate = ({ header, items, fotter, topMenu, search, style }) => {
+const MenuTemplate = ({ header, items, fotter, topMenu, search, style, divided, relaxed }) => {
     return (
         <Menu fluid vertical size="large" style={ {minHeight:500, ...style} } >
             <Menu.Item>
@@ -41,7 +41,7 @@ const MenuTemplate = ({ header, items, fotter, topMenu, search, style }) => {
                 </Menu.Menu>
             <Menu.Item>{search}</Menu.Item>
             <Menu.Item>
-                <SemanitcList>{items}</SemanitcList>
+                <SemanitcList divided={divided} relaxed={relaxed}>{items}</SemanitcList>
             </Menu.Item>
             <Menu.Item>{fotter}</Menu.Item>
 

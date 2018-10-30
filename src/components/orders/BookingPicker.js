@@ -79,7 +79,7 @@ BookingPicker.defaultProps = {
     defaultMonth:new Date().getMonth(),
     defaultYear:new Date().getFullYear(),
 
-}
+};
 BookingPicker.propTypes = {
     defaultMonth:PropTypes.number,
     defaultYear:PropTypes.number,

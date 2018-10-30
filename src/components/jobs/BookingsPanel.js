@@ -1,6 +1,7 @@
 import React from "react";
 import {MenuTemplate} from '../Templates';
-import {List} from "semantic-ui-react";
+import BookingCell from './BookingCell';
+
 
 class BookingsPanel extends React.Component {
     constructor(props) {
@@ -8,34 +9,38 @@ class BookingsPanel extends React.Component {
         this.state = {};
     }
 
-    skipAnon =  (str) => {
-        return str.startsWith('@anon') ? '' : str;
+    handleBookingClick = (e) => {
+        const {onBookingSelect} = this.props;
+        onBookingSelect(e.currentTarget.id);
     };
-    bookingToTitle =  (bookings) => {
-        return `${bookings.meetingDate} ${bookings.address} ${this.skipAnon(bookings.email)}
-        ${this.skipAnon(bookings.fullName)} ${bookings.phone}`
+    onDragEnd = () => {
+        const {onBookingSelect} = this.props;
+        onBookingSelect(null);
+    };
 
-    };
 
     render() {
-        const {bookings, onSelectBooking} = this.props;
-        console.log(bookings);
+        const {bookings, selectedBookingId} = this.props;
+
+
         return (
             <MenuTemplate
+                relaxed={true}
+                divided={true}
                 style={{overflow: 'auto', maxHeight: 500}}
                 header={<h1>Booking List</h1>}
                 items={
-                    bookings
+                    bookings.filter(item => !item.cleanerUserId)
                         .map(c => (
-                            <List.Item
-
+                            <BookingCell
+                                data={c}
+                                onDragEnd={this.onDragEnd}
+                                onDragStart={this.handleBookingClick}
                                 draggable="true"
                                 className="overflow"
-                                active={c.id === onSelectBooking}
+                                active={c.id === selectedBookingId}
                                 id={c.id} key={c.id}
-                            >
-                                {this.bookingToTitle(c)}
-                            </List.Item>
+                                onClick={this.handleBookingClick}/>
                         ))
                 }
 
