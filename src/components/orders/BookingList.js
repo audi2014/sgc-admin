@@ -14,7 +14,7 @@ export default ({bookings,  selectedOrdersId, onBookingSelect, onBookingLoad}) =
     };
     return (
         <MenuTemplate
-            style={{overflow: 'auto', maxHeight: 650}}
+            style={{overflow: 'auto', height: '80vh'}}
             header={<h1>Booking List</h1>}
             topMenu={<BookingPicker
                 onBookingLoad={onBookingLoad}

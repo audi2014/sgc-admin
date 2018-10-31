@@ -22,7 +22,7 @@ export default ({gifts, selectedGiftId, onSearchChange, onSortChange, onItemSele
 
     return (
         <MenuTemplate
-            style={{overflow: 'auto', maxHeight: 650}}
+            style={{overflow: 'auto', height: '80vh'}}
             header={
                 <Input
                     onChange={handleSearchChange}

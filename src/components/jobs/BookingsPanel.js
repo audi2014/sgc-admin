@@ -27,7 +27,7 @@ class BookingsPanel extends React.Component {
             <MenuTemplate
                 relaxed={true}
                 divided={true}
-                style={{overflow: 'auto', maxHeight: 500}}
+                style={{overflow: 'auto', height: '80vh'}}
                 header={<h1>Booking List</h1>}
                 items={
                     bookings.filter(item => !item.cleanerUserId)

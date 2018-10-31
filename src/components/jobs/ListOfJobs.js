@@ -5,6 +5,7 @@ import BookingPicker from "../orders/BookingPicker";
 import BookingsPanel from "./BookingsPanel";
 import CleanersPanel from "./CleanersPanel";
 import {getMonthStartEnd} from "../../badcode/Constants";
+import ModalMessage from './ModalMessage';
 
 
 class ListOfJobs extends React.Component {
@@ -17,16 +18,23 @@ class ListOfJobs extends React.Component {
             bookings: null,
             year: new Date().getFullYear(),
             month: new Date().getMonth(),
-            distances: {}
+            distances: {},
+            skipModal: false
         };
     }
 
-    setCleanerOfBooking = (cleanerId, bookingId) => {
+    setCleanerOfBooking = (booking, cleaner, ) => {
+
+        booking.cleanerUserId = cleaner.id;
+        this.setState({
+            bookings: [...this.state.bookings]
+        });
+
         return ApiController.fetch(
             'admin/set_booking_cleaner_id/',
             {
-                bookingId: bookingId,
-                cleanerUserId: cleanerId,
+                bookingId: booking.id,
+                cleanerUserId: cleaner.id,
             }
         );
     };
@@ -82,16 +90,16 @@ class ListOfJobs extends React.Component {
                 bookingId: bookingId,
             }
         ).then(res => {
-                if (res) {
-                    const result = {};
-                    res['cleaners_distances'].forEach(item=>{
-                        result[item.cleanerUserId] = item;
-                    });
-                    this.setState({
-                        distances: result
-                    })
-                }
-            })
+            if (res) {
+                const result = {};
+                res['cleaners_distances'].forEach(item => {
+                    result[item.cleanerUserId] = item;
+                });
+                this.setState({
+                    distances: result
+                })
+            }
+        })
     };
 
     componentDidMount() {
@@ -107,20 +115,30 @@ class ListOfJobs extends React.Component {
         this.getDistanceAndDuration(id)
     };
     onDragEnter = (id) => {
+        const { selectedCleaner } = this.state;
+        if(!selectedCleaner || +selectedCleaner.id !== +id) {
+            const cleaner = this.state.cleaners.find(
+                obj => Number(obj.id) === Number(id)
+            );
+            this.setState({selectedCleaner: cleaner, skipModal: true});
+        }
+
+    };
+    onCleanerSelect = (id) => {
         const cleaner = this.state.cleaners.find(
             obj => Number(obj.id) === Number(id)
         );
-        this.setState({selectedCleaner: cleaner})
+        this.setState({selectedCleaner: cleaner, skipModal: false})
     };
 
 
     handleDragEnd = (e) => {
-        this.setState({selectedCleaner: null, selectedBooking: null});
+        this.setState({selectedCleaner: null, selectedBooking: null, skipModal: false});
     };
 
     handleDrop = (e) => {
         const {selectedBooking, selectedCleaner} = this.state;
-        console.log('_onDrop c', e.currentTarget);
+        // console.log('_onDrop c', e.currentTarget);
 // prevent default action (open as link for some elements)
         e.preventDefault();
 // move dragged elem to the selected drop target
@@ -130,11 +148,7 @@ class ListOfJobs extends React.Component {
             && selectedCleaner
         ) {
             // alert(JSON.stringify({selectedBooking,selectedCleaner}))
-            selectedBooking.cleanerUserId = selectedCleaner.id;
-            this.setCleanerOfBooking(selectedCleaner.id, selectedBooking.id);
-            this.setState({
-                bookings: [...this.state.bookings]
-            });
+            this.setCleanerOfBooking(selectedBooking,selectedCleaner);
 
         }
     };
@@ -143,7 +157,7 @@ class ListOfJobs extends React.Component {
     };
 
     render() {
-        const {bookings, cleaners, selectedBooking, selectedCleaner, distances} = this.state;
+        const {skipModal, bookings, cleaners, selectedBooking, selectedCleaner, distances} = this.state;
         return (
             <Grid>
                 <Grid.Row centered>
@@ -175,6 +189,7 @@ class ListOfJobs extends React.Component {
                                 ? <CleanersPanel
                                     distances={distances}
                                     onDragEnter={this.onDragEnter}
+                                    onCleanerSelect={this.onCleanerSelect}
                                     onClearCleanerOfBooking={this.clearCleanerFromBooking}
                                     cleaners={cleaners}
                                     bookings={bookings}
@@ -184,7 +199,16 @@ class ListOfJobs extends React.Component {
                         }
                     </Grid.Column>
                 </Grid.Row>
-
+                {
+                    !skipModal && selectedCleaner && selectedBooking
+                        ? <ModalMessage
+                            onCancel={this.handleDragEnd}
+                            cleaner={selectedCleaner}
+                            booking={selectedBooking}
+                            onThisDrop={this.setCleanerOfBooking}
+                        />
+                        : null
+                }
             </Grid>
         )
     }

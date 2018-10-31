@@ -24,7 +24,7 @@ export default ({items, selectedItemId, onItemSelect, onSortChange, orderBy, onS
     };
     return (
         <MenuTemplate
-            style={{overflow: 'auto', maxHeight: 650}}
+            style={{overflow: 'auto', height: '80vh'}}
             header={<h1>User List</h1>}
             topMenu={[
                 <Button
