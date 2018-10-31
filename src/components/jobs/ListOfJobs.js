@@ -27,7 +27,9 @@ class ListOfJobs extends React.Component {
 
         booking.cleanerUserId = cleaner.id;
         this.setState({
-            bookings: [...this.state.bookings]
+            bookings: [...this.state.bookings],
+            selectedCleaner: null,
+            selectedBooking: null,
         });
 
         return ApiController.fetch(
@@ -199,16 +201,13 @@ class ListOfJobs extends React.Component {
                         }
                     </Grid.Column>
                 </Grid.Row>
-                {
-                    !skipModal && selectedCleaner && selectedBooking
-                        ? <ModalMessage
-                            onCancel={this.handleDragEnd}
-                            cleaner={selectedCleaner}
-                            booking={selectedBooking}
-                            onThisDrop={this.setCleanerOfBooking}
-                        />
-                        : null
-                }
+                <ModalMessage
+                    forceHide={skipModal}
+                    onCancel={this.handleDragEnd}
+                    onOk={this.setCleanerOfBooking}
+                    cleaner={selectedCleaner}
+                    booking={selectedBooking}
+                />
             </Grid>
         )
     }
