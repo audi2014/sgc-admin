@@ -59,7 +59,7 @@ export default ({
         <Grid textAlign='center'>
             <Grid.Column style={{width: 1200}}>
                 <Header as='h2' textAlign='center'>
-                    Zip Cods
+                    ZIP codes
                 </Header>
                 <Center>
                     <Table striped unstackable columns={7}>
