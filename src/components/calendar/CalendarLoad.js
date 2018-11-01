@@ -103,7 +103,6 @@ class CalendarLoad extends React.Component {
     componentDidMount() {
         this.getOrders(this.state);
     }
-    }
 
     handleItemSelect = (date) => {
         const dateStr = jsDateToServerDate(date);
