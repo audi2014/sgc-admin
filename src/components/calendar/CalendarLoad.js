@@ -103,10 +103,10 @@ class CalendarLoad extends React.Component {
     componentDidMount() {
         this.getOrders(this.state);
     }
+    }
 
     handleItemSelect = (date) => {
         const dateStr = jsDateToServerDate(date);
-        console.log('dateStr', dateStr)
         const day = this.state.availableHours.find(
             obj => obj.date === dateStr
         );
@@ -127,12 +127,15 @@ class CalendarLoad extends React.Component {
             .then(res => {
                 if (res) {
 
-                    this.state.selectedItem.isArchived = rest.isArchived;
-                    this.state.selectedItem.isProcessed = rest.isProcessed;
-                    this.state.selectedItem.adminComment = rest.adminComment;
+                    const selectedItem = {...this.state.selectedItem};
+
+                    selectedItem.isArchived = rest.isArchived;
+                    selectedItem.isProcessed = rest.isProcessed;
+                    selectedItem.adminComment = rest.adminComment;
 
                     this.setState({
                         items: [...this.state.items],
+                        selectedItem,
                     })
                 }
             })
