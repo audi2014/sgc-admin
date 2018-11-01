@@ -80,7 +80,7 @@ class ListOfJobs extends React.Component {
             .then(res => {
                 if (res) {
                     this.setState({
-                        bookings: res['bookingSmList']
+                        bookings: res['bookingSmList'].sort( (a,b) => Date.parse(a.meetingDate) - Date.parse(b.meetingDate) )
                     })
                 }
             })
