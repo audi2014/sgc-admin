@@ -13,8 +13,9 @@ export default ({data, active, children, ...rest}) => <List.Item
     <List.Content>
         <List.Header>{skipAnon(data.fullName)} {data.phone}</List.Header>
         <List.Description>
-            {data.meetingDate}&nbsp;
-            {data.address}&nbsp;
+            {data.meetingDate};&nbsp;
+            {data.address},&nbsp;
+            {data.city};&nbsp;
             {skipAnon(data.email)}&nbsp;
             {children}
         </List.Description>

@@ -61,7 +61,7 @@ function BookingCell({booking, onDelete}) {
                     id={booking.id} 
                 >
                     {booking.meetingDate}<br/>
-            		{booking.address} {booking.phone}
+            		{booking.address}, {booking.city}; {booking.phone}
                     <Icon 
                         id={booking.id}
                         onClick={onDelete} 

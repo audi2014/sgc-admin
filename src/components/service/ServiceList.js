@@ -1,4 +1,4 @@
-import {Menu, Button, Input, List} from 'semantic-ui-react'
+import {Button, List} from 'semantic-ui-react'
 import React from "react";
 import {MenuTemplate} from '../Templates';
 

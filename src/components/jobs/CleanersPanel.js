@@ -15,8 +15,6 @@ class CleanersPanel extends React.Component {
         const { selected } = this.state;
         const {onCleanerSelect} = this.props;
         const newIndex = selected === index ? -1 : index;
-
-        // console.log({selected,newIndex, index});
         this.setState({selected:newIndex});
         onCleanerSelect(e.currentTarget.id);
     };
@@ -24,7 +22,6 @@ class CleanersPanel extends React.Component {
 
 
     onDragEnter = (e) => {
-        // console.log('onDragEnter', e.currentTarget.id);
         const {onDragEnter} = this.props;
 
         onDragEnter(e.currentTarget.id);

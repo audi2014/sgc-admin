@@ -68,7 +68,6 @@ class ListBookingNew extends React.Component {
         })
             .then(res => {
                 if (res) {
-                    console.log(res);
                     this.setState({userInfo: res.user});
                 }
             })

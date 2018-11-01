@@ -140,7 +140,6 @@ class ListOfJobs extends React.Component {
 
     handleDrop = (e) => {
         const {selectedBooking, selectedCleaner} = this.state;
-        // console.log('_onDrop c', e.currentTarget);
 // prevent default action (open as link for some elements)
         e.preventDefault();
 // move dragged elem to the selected drop target
@@ -149,7 +148,6 @@ class ListOfJobs extends React.Component {
             && selectedBooking
             && selectedCleaner
         ) {
-            // alert(JSON.stringify({selectedBooking,selectedCleaner}))
             this.setCleanerOfBooking(selectedBooking,selectedCleaner);
 
         }

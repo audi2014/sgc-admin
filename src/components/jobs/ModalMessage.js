@@ -40,7 +40,6 @@ class ModalMessage extends React.PureComponent {
     }
 
     render() {
-        console.log('render')
         const { booking, cleaner, forceHide} = this.props;
         const open = booking && cleaner && this.state.open && !forceHide;
         return (

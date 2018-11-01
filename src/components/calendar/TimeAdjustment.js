@@ -69,7 +69,6 @@ class TimeAdjustment extends React.Component {
 
     render() {
         const {items} = this.props;
-        console.log(this.props.data);
         const {availableHours1, availableHours2, hide1, hide2} = this.state;
         return (
             <Form style={{ margin:0, marginTop:60}}>
