@@ -2,6 +2,7 @@ import React from "react";
 import {Table, Form, Image, List} from "semantic-ui-react";
 import Center from "react-center";
 import BookingFooter from "./BookingFooter";
+import {Stars} from '../rate';
 
 
 const Attachments = ({attachment}) => {
@@ -79,20 +80,26 @@ class BookingDetails extends React.Component {
 
     render() {
         const {
+            cleanerRate,
+            cleanerComment,
             paymentInfo, homeAccess_beHome, homeAccess_leaveKey,
             homeAccess_provideCode, zipCode, dirtyLevel, meetingDate, interval, adminComment, comment, orderList, id,
             isProcessed, isArchived, priorityList, attachmentList
         } = this.props.data;
         const {setBookingAdminData} = this.props;
         const parsedInfo = JSON.parse(paymentInfo);
+
+        const livemode = parsedInfo && parsedInfo.livemode === true;
         return (
             <Form>
                 <Center>
                     <Form.Group>
-                        <h1>Order Info</h1>
+                        <h1>Order Info {livemode ? null : "(TEST)"}</h1>
                     </Form.Group>
                 </Center>
-                <Form.Group>
+                <Form.Group style={{
+                    opacity: livemode ? 1 : 0.5
+                }}>
                     <Form.Field>
                         <Table>
                             <Table.Header>
@@ -140,11 +147,29 @@ class BookingDetails extends React.Component {
                         </Table>
                     </Form.Field>
                 </Form.Group>
-                    <Attachments attachment={attachmentList}/>
+                <Attachments attachment={attachmentList}/>
                 <Priorities priorities={priorityList}/>
-                <Form.Group>
-                    <h3>Admin notes:</h3>
-                </Form.Group>
+
+                {cleanerRate ? <Table attached>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Cleaners feedback</Table.HeaderCell>
+                            <Table.HeaderCell>Comment</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>                        
+                        <Table.Row>
+                            <Table.Cell>
+                                <Stars value={cleanerRate} />
+                            </Table.Cell>
+                            <Table.Cell>
+                                {cleanerComment}
+                            </Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table> : null}
+
+                <h3>Admin notes:</h3>
                 <BookingFooter
                     data={{id, adminComment, isArchived, isProcessed}}
                     setBookingAdminData={setBookingAdminData}
