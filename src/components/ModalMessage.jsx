@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 import *as MessageActions from "../actions/message";
 import connect from "react-redux/es/connect/connect";
@@ -17,7 +17,7 @@ class ModalMessage extends React.Component {
 
         return (
             <Modal
-                open={message}
+                open={!!message}
                 onClose={this.handleClose}
                 basic
                 size='small'
