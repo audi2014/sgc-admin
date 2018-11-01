@@ -1,0 +1,10 @@
+/*rate.css*/
+.rate-star-gray {
+	background-image: url(https://nomoreagent.com/img/star.png);
+    background-repeat: repeat-x;
+	filter:grayscale(100%);
+}
+.rate-star {
+	background-image: url(https://nomoreagent.com/img/star.png);
+    background-repeat: repeat-x;
+}
