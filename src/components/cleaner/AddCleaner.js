@@ -26,7 +26,6 @@ class AddCleaner extends React.Component {
         this.setState(obj);
     };
     handleCreate = () => {
-        console.log(...this.state);
         return ApiController.fetch('admin/register-cleaner/', {
             user: this.state,
             password:this.state.password
@@ -41,7 +40,6 @@ class AddCleaner extends React.Component {
     };
     render () {
         const {email, password, fullName, phone} = this.state;
-        console.log(this.state);
         return (
             <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
