@@ -1,7 +1,19 @@
 
 export const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-export const API_ENDPOINT = "http://lowcost-env.cbgaq2vptb.us-west-2.elasticbeanstalk.com/api/dev-v7/";
+export const API_ENDPOINT = "http://lowcost-env.cbgaq2vptb.us-west-2.elasticbeanstalk.com/api/dev-v7/"; 
+
+export const DAYS = [
+    'Mo',
+    'Tu',
+    'We',
+    'Th',
+    'Fr',
+    'Sa',
+    'Su',
+];
+
+// export const API_ENDPOINT = "http://lowcost-env.cbgaq2vptb.us-west-2.elasticbeanstalk.com/api/v6/";
 //var API_ENDPOINT = "http://localhost:8888/";
 
 

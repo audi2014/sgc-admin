@@ -2,11 +2,13 @@ import React from "react";
 import {Grid, Header, Table, Input, Icon, Button} from "semantic-ui-react";
 import Center from "react-center";
 import mapZipCodesToTable from "./MapZipCodsToTable";
+import {DAYS} from "../../badcode/Constants";
 
 
 export default ({
                     codes,
-                    onChange
+                    onAdd,
+                    onDelete,
                 }
 ) => {
     //ОСТОРОЖНО МАГИЯ!
@@ -27,33 +29,13 @@ export default ({
         //очищаем инпут
         this.inputs[dayOfWeek].inputRef.value = '';
 
-        //делаем глубокую копию данных сервера
-        const codesCopy = JSON.parse(JSON.stringify(codes));
-        let obj = codesCopy.find(obj => +obj.dayOfWeek === dayOfWeek);
-        if (code) {
-            if(obj) {
-                if(obj.zipCodes.find(s=>s===code)) {
-                    alert("code already set")
-                } else {
-                    obj.zipCodes.push(code);
-                }
-            } else {
-                codesCopy.push({dayOfWeek, zipCodes:[code] })
-            }
-            onChange(codesCopy);
-        }
+        onAdd({code, dayOfWeek});
     };
 
     const handleDelete = (e) => {
         const dayOfWeek = +e.currentTarget.dataset['day'];
-        const code = e.currentTarget.dataset['code'];
-        const codesCopy = JSON.parse(JSON.stringify(codes));
-        let obj = codesCopy.find(obj => +obj.dayOfWeek === dayOfWeek);
-        if (code && obj) {
-            obj.zipCodes = obj.zipCodes.filter(str => str !== code);
-
-            onChange(codesCopy);
-        }
+        const code = e.currentTarget.dataset['code'];  
+        onDelete({code, dayOfWeek});
     };
     return (
         <Grid textAlign='center'>
@@ -65,25 +47,23 @@ export default ({
                     <Table striped unstackable columns={7}>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Mo</Table.HeaderCell>
-                                <Table.HeaderCell>Tu</Table.HeaderCell>
-                                <Table.HeaderCell>We</Table.HeaderCell>
-                                <Table.HeaderCell>Th</Table.HeaderCell>
-                                <Table.HeaderCell>Fr</Table.HeaderCell>
-                                <Table.HeaderCell>Sa</Table.HeaderCell>
-                                <Table.HeaderCell>Su</Table.HeaderCell>
+                            {DAYS.map((s,index)=><Table.HeaderCell key={index}>{s}</Table.HeaderCell>)}
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
                             {zipCodes
                                 .map((daysCodes, i) => (
                                     <Table.Row key={i}>{daysCodes.map((code, j) => <Table.Cell
-                                            data-code={code}
-                                            data-day={j}
-                                            onClick={handleDelete}
+                                                                                   
                                             key={j}
                                         >
-                                            {code ? <Icon name='trash'/> : null}
+                                            {code ? <Icon 
+                                                data-code={code}
+                                                data-day={j}     
+                                                link 
+                                                name='trash'
+                                                onClick={handleDelete}
+                                            /> : null}
                                             {code}
                                         </Table.Cell>
                                     )}
