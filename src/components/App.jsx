@@ -1,11 +1,6 @@
 import React from "react";
 import APIController from "../badcode/ApiController";
 import {API_AUTH_OK, API_NO_AUTH, API_OFF} from "../badcode/Constants";
-import $ from "jquery";
-import modal from "jquery-modal";
-import cookie from "jquery.cookie";
-import CryptoJS from "cryptojs";
-import pickmeup from "pickmeup";
 import Header from "./Header";
 import {bindActionCreators} from "redux";
 import * as messageActions from "../actions/message";
@@ -23,7 +18,6 @@ class App extends React.Component {
     };
 
     showMessage = (code, textStr) => {
-
         const {showApiMessage} = this.props;
         showApiMessage({code, message: textStr});
     };
@@ -42,47 +36,6 @@ class App extends React.Component {
         itemPanel: false,
         itemView: false
     };
- //   setItemPanel = (idx) => {
-   //     var items = false;
-  //      switch (idx) {
-  //          case "0":
-   //             items = (<UserListPage />);
-   //             break;
-   //         case "1":
-   //             items = (<ListService app={this}/>);
-   //             break;
-   //         case "2":
-    //            items = (<ListBooking app={this}/>);
-    //            break;
-     //       case "5":
-     //           items = (<ListBookingArchived app={this}/>);
-     //           break;
-    //        case "7":
-      //          items = (<ListBookingNew app={this}/>);
-     //           break;
-      //      case "8":
-        //        items = (<ListPaidGifts app={this}/>);
-       //         break;
-      //      default:
-        //        break;
-      //  }
-
-    //    this.setState({
-      //      itemPanel: items,
-     //       selectedMenuIdx: idx
-      //  });
-
-    //};
-    setView = (val) => {
-        this.setState({
-            itemView: val
-        });
-    };
-    setRoute = (val) => {
-        this.setState({
-            route: val
-        });
-    };
     getContent = () => {
         if (this.state.apiStatus === API_OFF) {
             return (<div/>);
@@ -93,14 +46,10 @@ class App extends React.Component {
         }
         else if (this.state.apiStatus == API_AUTH_OK) {
             return (
-                <div >
-                    <div >
-                        <div >
-                            <div >
-                                <Header ref="header" selectedItem={this.state.selectedMenuIdx} token={this.state.token}
-                                        app={this}/>
-                            </div>
-                        </div>
+                <div>
+                    <div>
+                        <Header ref="header" token={this.state.token}
+                                app={this}/>
                     </div>
                     <div>
                         <Router/>

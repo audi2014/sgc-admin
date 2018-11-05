@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import APIController from "../badcode/ApiController";
-import { Menu, Icon, Dropdown, Grid } from "semantic-ui-react";
+import { Menu, Dropdown, Grid } from "semantic-ui-react";
 import { Link } from "@reach/router";
 
 const cssNavActive = {
@@ -18,7 +18,6 @@ const LinkedMenuItem = props => {
             as={Link}
             {...props}
             getProps={props => {
-                console.log(props);
                 return {
                     style: props.isCurrent ? cssNavActive : cssNav
                 };

@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Table} from "semantic-ui-react";
 import Center from 'react-center';
+import Stars from '../rate';
+
 
 class ReplyForm extends React.Component {
 
@@ -9,7 +11,7 @@ class ReplyForm extends React.Component {
     }
 
     render() {
-        const { fullName, email, phone, address, city, regDate, zipCode, bedrooms, fullBathrooms, bathroomsWithShower,
+        const { cleanerRateAvg,cleanerRateCount, fullName, email, phone, address, city, regDate, zipCode, bedrooms, fullBathrooms, bathroomsWithShower,
             halfBathrooms, levels, dogsPets, catsPets, footage, parkingInDriveway, parkingOnStreet, paidParking} = this.props.data;
         return (
                     <Form>
@@ -26,9 +28,12 @@ class ReplyForm extends React.Component {
                                 <Table.Body>
                                     <Table.Row>
                                         <Table.Cell>
-                                        Email: {email}
-                                    </Table.Cell>
+                                            Email: {email}
+                                        </Table.Cell>
                                     </Table.Row>
+                                    <Table.Row><Table.Cell>
+                                    <Stars value={cleanerRateAvg} avg={cleanerRateAvg} count={cleanerRateCount}/>                                    
+                                    </Table.Cell></Table.Row>                                    
                                     <Table.Row>
                                     <Table.Cell>
                                         Phone: {phone}

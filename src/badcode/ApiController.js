@@ -1,49 +1,17 @@
-import $ from "jquery";
-import cookie from "jquery.cookie";
 import CryptoJS from "cryptojs";
+import Cookies from "js-cookie";
 import {
     API_ENDPOINT,
-    MSG_MODE_MODAL,
-    MSG_MODE_DIALOG,
-    E_CODE_ARG_MISSING,
     API_NO_AES,
     API_NO_AUTH,
     API_AUTH_OK,
 } from "./Constants";
 
 
-function isBlank(str) {
-    return (!str || /^\s*$/.test(str));
-}
-
 export default {
-    _debug_prev_body: null,
     app: false,
     state: {
         aesKeyHash: '23ef8d5472ff814d',
-        routes: {
-            connect: API_ENDPOINT + "app/connect/",
-            login: API_ENDPOINT + "app/login/",
-            get_all_users: API_ENDPOINT + "admin/get_all_users/",
-            get_service_list: API_ENDPOINT + "user/get_service_list/",
-            get_available_zip_codes: API_ENDPOINT + "user/get_available_zip_codes/",
-            get_booking_list: API_ENDPOINT + "admin/get_booking_list/",
-            get_booking_list_archived: API_ENDPOINT + "admin/get_booking_list_archived/",
-            get_booking_list_new_only: API_ENDPOINT + "admin/get_booking_list_new_only/",
-            get_available_hours: API_ENDPOINT + "admin/get_available_hours/",
-            set_available_hours: API_ENDPOINT + "admin/set_available_hours/",
-            edit_user: API_ENDPOINT + "admin/edit_user/",
-            get_user: API_ENDPOINT + "admin/get_user/",
-            insert_service: API_ENDPOINT + "admin/insert_service/",
-            set_booking_archived: API_ENDPOINT + "admin/set_booking_archived/",
-            set_booking_processed: API_ENDPOINT + "admin/set_booking_processed/",
-            change_password: API_ENDPOINT + "user/change_password/",
-            reset_password: API_ENDPOINT + "app/send_new_password/",
-            get_gift_payments: API_ENDPOINT + "admin/get_gift_payments/",
-            set_available_zip_codes: API_ENDPOINT + "admin/set_available_zip_codes/",
-            set_gift_payment_admin_data: API_ENDPOINT + "admin/set_gift_payment_admin_data/",
-            register_cleaner: API_ENDPOINT + "admin/register-cleaner/",
-        },
         context: false
     },
     fetch: function (path, dataPublic = {}) {
@@ -53,10 +21,10 @@ export default {
 
         return fetch(API_ENDPOINT + path, {
             method: 'POST',
-            body: JSON.stringify(this.EncryptData({
+            body: JSON.stringify({
                 dataPrivate: dataPrivate,
                 dataPublic: dataPublic
-            }))
+            })
         }).then(res => res.json())
             .then(res => {
                 const data = this.DecryptData(res);
@@ -65,7 +33,6 @@ export default {
                     return {...data.dataPrivate, ...data.dataPublic}
                 }
                 else {
-                    console.log(data.error);
                     this.handleApiError(data.error.code, data.error.message);
                     return null;
                 }
@@ -74,164 +41,57 @@ export default {
             return null;
         });
     },
-    finishLogin: function (context) {
-        this.app.hideMessage();
-        this.app.setState({
-            apiStatus: API_AUTH_OK,
-            token: context.userToken
-        });
-    },
-    registerCleaner: function (userObj, password, onFinish) {
-        var body = {
-            dataPrivate: {
-                context: this.state.context,
-                password: password,
-            },
-            dataPublic: {
-                user: userObj
-            }
-        };
-        body = this.EncryptData(body);
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(body),
-            url: this.state.routes.register_cleaner,
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                data = this.DecryptData(data);
-                if (data.success === true) {
-                    this.saveContext(data.dataPrivate.context);
-                    onFinish();
-                }
-                else {
-                    console.log(data.error);
-                    this.handleApiError(data.error.code, data.error.message);
-                }
-            }.bind(this),
-            error: (function (xhr, status, err) {
-                this.handleApiError(400, err.toString());
-            }.bind(this))
-        });
-
-    },
-    resetPassword: function (email, onFinish) {
-        var body = {"dataPrivate": {"context": this.state.context}, "dataPublic": {user: {email: email}}};
-        body = this.EncryptData(body);
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(body),
-            url: this.state.routes.reset_password,
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                data = this.DecryptData(data);
-                if (data.success === true) {
-                    this.saveContext(data.dataPrivate.context);
-                    onFinish();
-                }
-                else {
-                    console.log(data.error);
-                    this.handleApiError(data.error.code, data.error.message);
-                }
-            }.bind(this),
-            error: function (xhr, status, err) {
-                this.handleApiError(400, err.toString());
-            }.bind(this)
-        });
-    },
-    changePassword: function (oldPassword, newPassword, onFinish) {
-        var body = {
-            "dataPrivate": {
-                "context": this.state.context,
-                "oldPassword": oldPassword,
-                "newPassword": newPassword
-            }, "dataPublic": {}
-        };
-        body = this.EncryptData(body);
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(body),
-            url: this.state.routes.change_password,
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                data = this.DecryptData(data);
-                if (data.success === true) {
-                    this.saveContext(data.dataPrivate.context);
-                    onFinish();
-                }
-                else {
-                    console.log(data.error);
-                    this.handleApiError(data.error.code, data.error.message);
-                }
-            }.bind(this),
-            error: function (xhr, status, err) {
-                this.handleApiError(400, err.toString());
-            }.bind(this)
-        });
-    },
-
     connect: function () {
         this.app.showMessage('loading', 'connect...');
-        var body = {"dataPrivate": {"context": this.state.context}, "dataPublic": {}};
-        body = this.EncryptData(body);
-        $.ajax({
-            type: "POST", data: JSON.stringify(body), url: this.state.routes.connect, dataType: 'json', cache: false,
-            success: function (data) {
-                data = this.DecryptData(data);
-                if (data.success === true) {
-                    this.saveContext(data.dataPrivate.context);
-                    this.app.setState({
-                        apiStatus: API_NO_AUTH
-                    });
-                    this.app.hideMessage();
-                }
-                else {
-                    this.handleApiError(data.error.code, data.error.message);
-                }
-            }.bind(this),
-            error: function (xhr, status, err) {
-                this.handleApiError(400, err.toString());
-            }.bind(this),
+        return this.fetch(
+            "app/connect/", 
+            {}
+        ).then(data => {
+            if(!data) {
+                alert("error");
+            } else {
+                this.app.setState({
+                    apiStatus: API_NO_AUTH
+                });
+                this.app.hideMessage();            
+            }
+            return data;    
         });
     },
     login: function (email, password) {
+        this.app.showMessage('loading', 'login...');
 
-        this.app.showMessage('loading', 'loading...');
-        var body = {
-            "dataPrivate": {"context": this.state.context, "password": password},
-            "dataPublic": {"user": {"email": email}}
-        };
-        body = this.EncryptData(body);
-        $.ajax({
-            type: "POST", data: JSON.stringify(body), url: this.state.routes.login, dataType: 'json', cache: false,
-            success: function (data) {
-                data = this.DecryptData(data);
-                if (data.success === true) {
-                    if (data.dataPublic.user.userType == 1) {
-                        this.saveContext(data.dataPrivate.context);
-                        this.state.user = data.dataPublic.user;
-                        this.finishLogin(data.dataPrivate.context);
-                    }
-                    else {
-                        this.handleApiError(2, 'sory, you are not admin :(');
-                    }
+        return this.fetch(
+            "app/login/", 
+            {
+                "password": password, 
+                "user": {"email": email}
+            }
+        ).then(data => {
+            if(data) {                
+                if (data.user.userType == 1) {
+                    this.saveContext(data.context);
+                    this.state.user = data.user;
+                    
+                    this.app.hideMessage();
+                    this.app.setState({
+                        apiStatus: API_AUTH_OK,
+                        token: data.context.userToken
+                    });
+
+                    return data;
                 }
                 else {
-                    this.handleApiError(data.error.code, data.error.message);
+                    this.handleApiError(2, 'sory, you are not admin :(');
+                    return null;
                 }
-            }.bind(this),
-            error: function (xhr, status, err) {
-                this.handleApiError(400, err.toString());
-            }.bind(this),
+            }
         });
     },
 
 
 // START UP
     start: function () {
-        this.state.aesKeyHash = this.reedSavedAesKeyHash();
         if (!this.state.aesKeyHash) {
             this.app.setState({
                 apiStatus: API_NO_AES
@@ -243,7 +103,11 @@ export default {
                 this.connect();
             }
             else {
-                this.finishLogin(this.state.context);
+                this.app.hideMessage();
+                this.app.setState({
+                    apiStatus: API_AUTH_OK,
+                    token: this.state.context.userToken
+                });
             }
         }
     },
@@ -251,7 +115,7 @@ export default {
         if (typeof json.dataPrivate == "undefined") {
             json.dataPrivate = [];
         }
-        else if (typeof json.dataPrivate == "string" && !isBlank(json.dataPrivate)) {
+        else if (typeof json.dataPrivate == "string" && !!json.dataPrivate) {
             var ciphertext = json.dataPrivate;
             var decryptedText = null;
             try {
@@ -272,66 +136,36 @@ export default {
         }
         return json;
     },
-    EncryptData: function (json) {
-        this._debug_prev_body = json;
-        var text = JSON.stringify(json.dataPrivate);
-        return json;
-    },
     handleApiError: function (code, message) {
-        console.log(code + ", " + message, this._debug_prev_body);
         if (message != 'abort') {
-            this.app.showMessage(code, message, MSG_MODE_MODAL);
+            console.error(message);
+            this.app.showMessage(code, message);
         }
     },
     reedSavedAppId: function () {
-        var oldCookie = $.cookie('appId');
-        if (oldCookie == null || isBlank(oldCookie)) {
-            var newCookie = "react.js-" + Math.random().toString(36).substr(2, 16);
-            $.cookie('appId', newCookie);
+
+        const oldCookie =  Cookies.get('appId');
+        if (!oldCookie) {
+            const newCookie = "react.js-" + Math.random().toString(36).substr(2, 16);
+            Cookies.set('appId', newCookie);
             return newCookie;
         }
         else {
             return oldCookie;
         }
     },
-    reedSavedAesKeyHash: function () {
-        return this.state.aesKeyHash;
-        // var aesKeyHash = $.cookie('aesKeyHash');
-        // if(aesKeyHash == null || isBlank(aesKeyHash)) {
-        // 	return false;
-        // }
-        // else {
-        // 	return aesKeyHash;
-        // }
-    },
-    saveAesKeyHash: function (aesKeyHash) {
-        this.state.aesKeyHash = aesKeyHash;
-        if (!aesKeyHash) {
-            $.cookie('aesKeyHash', "");
-            this.app.showMessage(E_CODE_ARG_MISSING, "wrong AES KeyHash", MSG_MODE_DIALOG, function () {
-                this.app.setState({
-                    apiStatus: API_NO_AES
-                });
-                this.app.hideMessage();
-            }.bind(this));
-        }
-        else {
-            $.cookie('aesKeyHash', aesKeyHash);
-        }
-    },
     reedSavedContext: function () {
-        var oldCookie = $.cookie('context');
-        if (oldCookie == null || isBlank(oldCookie) ) {
+        const oldCookie = Cookies.getJSON('context');
+        if (!oldCookie) {
             return {appId: this.reedSavedAppId(), clientVersion: "reactClientV1b", userToken: null, userId: null};
         }
         else {
-            return JSON.parse(oldCookie);
+            return oldCookie;
         }
     },
     logout: function () {
         this.state.context = false;
-        $.cookie('context', "");
-        // $.cookie('appId', "");
+        Cookies.remove('context');
         this.app.setState({
             apiStatus: API_NO_AUTH
         });
@@ -341,11 +175,11 @@ export default {
     },
     saveContext: function (context) {
         this.state.context = context;
-        if (context == "") {
-            $.cookie('context', "");
+        if (!context) {
+            Cookies.remove('context');
         }
         else {
-            $.cookie('context', JSON.stringify(context));
+            Cookies.set('context', context);
         }
     }
 };

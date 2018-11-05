@@ -55,7 +55,9 @@ class ListBookingNew extends React.Component {
             }
         )
             .then(bookingList => {
-                this.setState({items: bookingList});
+                this.setState({
+                    items: bookingList.sort( (a,b) => Date.parse(a.meetingDate) - Date.parse(b.meetingDate) )
+                });
             })
     };
     getUser = (id) => {
@@ -66,7 +68,6 @@ class ListBookingNew extends React.Component {
         })
             .then(res => {
                 if (res) {
-                    console.log(res);
                     this.setState({userInfo: res.user});
                 }
             })

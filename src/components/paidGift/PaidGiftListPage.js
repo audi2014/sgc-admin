@@ -35,7 +35,6 @@ class ListPaidGifts extends React.Component {
         return ApiController.fetch('admin/get_gift_payments/')
             .then(res => {
                 if (res) {
-                    console.log(res);
                     this.setState({gifts: res['giftPayments']});
                 }
             })

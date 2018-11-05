@@ -46,7 +46,7 @@ export default ({
                     <Grid.Column mobile={16} tablet={16} computer={16} width={16}>
                             {
                                 selectedBookings.map(c => (
-                                        <Grid>
+                                        <Grid key={c.id}>
                                             <Grid.Row stretched>
                                                 <Grid.Column width={8}>
                                                     <Segment>

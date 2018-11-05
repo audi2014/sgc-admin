@@ -14,29 +14,23 @@ const Line = (props) => {
     )
 };
 
-class PaidGiftDetails extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-
+const PaidGiftDetails = ({data, updateGiftPayments}) => {
         const {detailsJson, paymentInfo, name, price, code, at,
-            adminComment, isArchived, isProcessed, id} = this.props.data;
-
-        const {updateGiftPayments} = this.props;
-
+            adminComment, isArchived, isProcessed, id} = data;
         const parsedDetails = JSON.parse(detailsJson);
         const parsedInfo = JSON.parse(paymentInfo);
         const date = new Date(Date.parse(at + " GMT+0"));
+        const livemode = parsedInfo && parsedInfo.livemode === true;
         return (
-            <Form>
+            <Form >
                 <Center>
                     <Form.Group>
-                        <h1>Order Info</h1>
+                        <h1>Order Info {livemode ? null : "(TEST)"}</h1>
                     </Form.Group>
                 </Center>
-                <Form.Group>
+                <Form.Group style={{
+                    opacity: livemode ? 1 : 0.5
+                }}>
                     <Form.Field>
                     <Table >
                         <Table.Header>
@@ -143,7 +137,6 @@ class PaidGiftDetails extends React.Component {
                 />
             </Form>
         )
-    }
 }
 
 export default PaidGiftDetails;

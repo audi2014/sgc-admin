@@ -39,7 +39,6 @@ class DateTimeFormInline extends React.Component {
         }
     };
     handleChangeMonth = ({activeStartDate}) => {
-        debugger;
         this.setState({date: activeStartDate});
         this.props.onGetOrders(getMonthStartEnd(activeStartDate))
 

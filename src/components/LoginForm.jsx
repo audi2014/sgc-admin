@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {E_CODE_ARG_MISSING, MSG_MODE_MODAL} from "../badcode/Constants";
 import APIController from "../badcode/ApiController";
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 import *as messageActions from '../actions/message';
@@ -24,7 +23,7 @@ class LoginForm extends React.Component {
         this.setState({password: evt.target.value});
     };
     handleLogin = () => {
-        const { showError, showMessage } = this.props;
+        const { showError } = this.props;
 
         if (!(this.state.email)) {
             showError("email is empty" );
@@ -39,12 +38,13 @@ class LoginForm extends React.Component {
     handleReset = () => {
         const { showError, showMessage } = this.props;
         if (!(this.state.email)) {
-            //code, textStr, type = MSG_MODE_STATIC, onOk = null
             showError("email is empty" );
         }
         else {
-            APIController.resetPassword(
-                this.state.email,
+            APIController.fetch(
+                'app/send_new_password/', 
+                {user: {email: this.state.email}}
+            ).then(
                 () => {
                     showMessage(
                         "Ok!",
