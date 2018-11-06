@@ -99,6 +99,7 @@ class ListBookingNew extends React.Component {
         return (
             <PageTemplate
                 listMenu={<OrderList
+                    users={userInfo}
                     bookings={itemsFilter(items)}
                     selectedOrdersId={selectedItem ? selectedItem.id : null}
                     onBookingSelect={this.handleBookingSelect}

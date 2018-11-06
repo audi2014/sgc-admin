@@ -3,7 +3,10 @@ import {List} from "semantic-ui-react";
 const skipAnon = (str) => {
     return str.startsWith('@anon') ? '' : str;
 };
-export default ({data, active, children, ...rest}) => <List.Item
+export default React.memo(BookingCell);
+function BookingCell  ({data, active, children, ...rest}){
+    console.log('BookingCell render');
+    return (<List.Item
     draggable="true"
     className="overflow"
     active={active}
@@ -21,4 +24,4 @@ export default ({data, active, children, ...rest}) => <List.Item
         </List.Description>
     </List.Content>
 
-</List.Item>;
+</List.Item>)};

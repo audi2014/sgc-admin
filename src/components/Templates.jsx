@@ -39,7 +39,11 @@ const MenuTemplate = ({ header, items, fotter, topMenu, search, style, divided, 
                 {topMenu}
                 </Center>
                 </Menu.Menu>
-            <Menu.Item>{search}</Menu.Item>
+            <Menu.Item>
+                <Center>
+                {search}
+                </Center>
+                </Menu.Item>
             <Menu.Item>
                 <SemanitcList divided={divided} relaxed={relaxed}>{items}</SemanitcList>
             </Menu.Item>

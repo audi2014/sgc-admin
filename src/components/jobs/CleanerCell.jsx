@@ -4,10 +4,13 @@ import {List, Segment, Icon,  Accordion} from "semantic-ui-react";
 const css = {
 	item:{paddingBottom: 20}
 }
-
-export default function CleanerCell({onDragEnter, onOpenClick, onDeleteBooking, active, opened, cleaner, bookings, distances, ...rest}) {
+export default React.memo(CleanerCell);
+function CleanerCell({onDragEnter, onOpenClick, onDeleteBooking, active, opened, cleaner, bookings, distances, ...rest}) {
 	const cleanerId = cleaner && cleaner.id;
 	const bookingsOfCleanerId = getBookingsOfCleanerId(cleanerId,bookings);
+
+
+    console.log('BookingCell render');
 	
 	return (
 		<List.Item
