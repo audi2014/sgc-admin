@@ -20,7 +20,7 @@ class ModalMessage extends React.PureComponent {
         const {onOk, booking, cleaner} = this.props;
         onOk(booking, cleaner);
         this.setState({open:false});
-    }
+    };
 
     static getDerivedStateFromProps(nextProps, prevState) {
         const newBookingId = nextProps.booking && nextProps.booking.id;
@@ -46,7 +46,7 @@ class ModalMessage extends React.PureComponent {
             <Modal size='mini' open={booking && cleaner && open && !forceHide} onClose={this.handleClose}>
                 <Modal.Header>Job assignment</Modal.Header>
                 <Modal.Content>
-                    <p>Are you sure, you want to adding job assignment?</p>
+                    <p> Are you sure you want to add job assignment?</p>
                     {
                         open
                         ? (

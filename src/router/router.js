@@ -4,7 +4,7 @@ import Calendar from "../components/calendar/CalendarLoad";
 import UserListPage from "../components/user/UserListPage";
 import ListService from "../components/service/ServiceListPage";
 import ListPaidGifts from "../components/paidGift/PaidGiftListPage";
-import ZipCodsLoad from '../components/zipCods/ZipCodsLoad';
+import ZipCodeLoad from '../components/zipCods/ZipCodsLoad';
 import AddCleaner from '../components/cleaner/AddCleaner';
 import ListOfJobs from '../components/jobs/ListOfJobs';
 
@@ -25,7 +25,7 @@ export default () => (
     <Router>
         <ListOfJobs path='jobs'/>
         <AddCleaner path='cleaner'/>
-        <ZipCodsLoad path='zip_cods'/>
+        <ZipCodeLoad path='zip_code'/>
         <ListPaidGifts path="/" />
         <UserListPage path="users" />
         <ListService path="service" />
