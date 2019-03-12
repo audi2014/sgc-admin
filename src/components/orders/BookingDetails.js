@@ -25,7 +25,7 @@ const Attachments = ({attachment}) => {
 };
 const Priorities = ({priorities}) => {
 
-    if(priorities.length) return (
+    if(priorities && priorities.length) return (
         <Form.Group grouped>
             <h3>Priority List</h3>
             {
